@@ -35,23 +35,27 @@ void grid::show()
 void grid::loadFile()
 {
     _mapData.open("PacManMap.txt");
+    _pelletData.open("PacManPellets.txt");
 
-    if (_mapData.fail()) //checks file
+    if (_mapData.fail() || _pelletData.fail()) //checks file
     {
         cout<<endl<<"****** Could not open file ******"<<endl;
         exit(0);
     }
 
+
 }
 
 void grid::loadMap()
 {
+    char singleChar;
+
     loadFile();
 
     while(!_mapData.eof())
     {
-        _mapData.get(_singleChar);
-        if (_singleChar==13) //13 is the enter key
+        _mapData.get(singleChar);
+        if (singleChar==13) //13 is the enter key
         {
             cout<<endl;
             //increment the row if it isn't past the MAX
@@ -59,13 +63,31 @@ void grid::loadMap()
         }
         else
         {
-            cout<<_singleChar;
+            cout<<singleChar;
+            //have a switch case that points to the correct object.
+
+        }
+    }
+
+    while(!_pelletData.eof())
+    {
+        _pelletData.get(singleChar);
+        if (singleChar==13) //13 is the enter key
+        {
+            cout<<endl;
+            //increment the row if it isn't past the MAX
+
+        }
+        else
+        {
+            cout<<singleChar;
             //have a switch case that points to the correct object.
 
         }
     }
 
     _mapData.close();
+    _pelletData.close();
 
     /* DEFAULT MAP:
 BBBBBBBBBBBBBBBBBBBBBBBBBBBB
@@ -119,6 +141,7 @@ void grid::initializeToNull()
         for (int j=0;j<X_DIMENSION;j++)
         {
             _board[i][j]==NULL;
+            _pellets[i][j]==NULL;
         }
     }
 }
