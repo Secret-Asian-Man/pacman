@@ -1,6 +1,7 @@
 #include "boarders.h"
+#include "object.h"
 
-boarders::boarders()
+boarders::boarders():object(xy,'B')
 {
 
 }

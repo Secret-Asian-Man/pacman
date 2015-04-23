@@ -100,6 +100,15 @@ BPWWWWWWWWWWPWWPWWWWWWWWWWPB
 BPPPPPPPPPPPPPPPPPPPPPPPPPPB
 BBBBBBBBBBBBBBBBBBBBBBBBBBBB
 
+M=pacman
+W=walls
+P=pebble
+U=powerUp
+D=door
+N=null
+H=wormHole
+G=ghost
+R=Warp
      */
 }
 

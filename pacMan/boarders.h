@@ -1,11 +1,12 @@
 #ifndef BOARDERS_H
 #define BOARDERS_H
 #include "object.h"
+#include "coords.h"
 
 class boarders: public object
 {
 public:
-    boarders();
+    boarders(coords xy);
     ~boarders();
 };
 

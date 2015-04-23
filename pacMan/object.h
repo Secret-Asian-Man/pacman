@@ -5,7 +5,7 @@
 class object: public object
 {
 public:
-    object();
+    object(coords xy, char objectType, int age=0, bool hasMoved=false, int speed=1);
     ~object();
 
     void virtual move();
@@ -13,7 +13,11 @@ public:
 
 private:
     coords _xy;
+    char _objectType;
+    int _age;
     bool _hasMoved;
+    int _speed;
+
 };
 
 #endif // OBJECT_H
