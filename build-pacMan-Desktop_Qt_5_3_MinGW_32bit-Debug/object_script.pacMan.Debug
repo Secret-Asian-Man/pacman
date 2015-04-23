@@ -1,0 +1,15 @@
+INPUT(
+./debug\main.o
+./debug\grid.o
+./debug\object.o
+./debug\coords.o
+./debug\random.o
+./debug\pacman.o
+./debug\ghost.o
+./debug\walls.o
+./debug\boarders.o
+./debug\warp.o
+./debug\pellet.o
+./debug\powerpellet.o
+./debug\door.o
+);
