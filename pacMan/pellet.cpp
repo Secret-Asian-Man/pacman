@@ -1,6 +1,7 @@
 #include "pellet.h"
+#include "constants.h"
 
-pellet::pellet()
+pellet::pellet(coords position):object(position,PELLET)
 {
 
 }

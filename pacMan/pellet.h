@@ -5,7 +5,7 @@
 class pellet: public object
 {
 public:
-    pellet();
+    pellet(coords position);
     ~pellet();
 };
 

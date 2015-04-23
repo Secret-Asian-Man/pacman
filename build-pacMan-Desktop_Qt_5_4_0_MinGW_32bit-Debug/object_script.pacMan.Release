@@ -1,0 +1,15 @@
+INPUT(
+./release\main.o
+./release\grid.o
+./release\object.o
+./release\coords.o
+./release\random.o
+./release\pacman.o
+./release\ghost.o
+./release\walls.o
+./release\boarders.o
+./release\warp.o
+./release\pellet.o
+./release\powerpellet.o
+./release\door.o
+);

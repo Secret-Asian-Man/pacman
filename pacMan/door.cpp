@@ -1,6 +1,6 @@
 #include "door.h"
-
-door::door()
+#include "constants.h"
+door::door(coords position):object(position,DOOR)
 {
 
 }

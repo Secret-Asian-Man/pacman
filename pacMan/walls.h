@@ -5,7 +5,7 @@
 class walls: public object
 {
 public:
-    walls();
+    walls(coords position);
     ~walls();
 };
 

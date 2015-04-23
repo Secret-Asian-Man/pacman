@@ -1,6 +1,6 @@
 #include "warp.h"
-
-warp::warp()
+#include "constants.h"
+warp::warp(coords position):object(position, WARP)
 {
 
 }

@@ -1,6 +1,6 @@
 #include "walls.h"
-
-walls::walls()
+#include "constants.h"
+walls::walls(coords position):object(position,WALLS)
 {
 
 }

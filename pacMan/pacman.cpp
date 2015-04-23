@@ -1,6 +1,7 @@
 #include "pacman.h"
+#include "constants.h"
 
-pacman::pacman()
+pacman::pacman(coords position):object(position,PACMAN)
 {
 
 }

@@ -1,6 +1,6 @@
 #include "powerpellet.h"
-
-powerPellet::powerPellet()
+#include "constants.h"
+powerPellet::powerPellet(coords position):pellet(position)
 {
 
 }

@@ -1,11 +1,11 @@
 #ifndef DOOR_H
 #define DOOR_H
-
-
-class door
+#include "coords.h"
+#include "object.h"
+class door:public object
 {
 public:
-    door();
+    door(coords position);
     ~door();
 };
 

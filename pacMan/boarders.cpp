@@ -1,7 +1,8 @@
 #include "boarders.h"
 #include "object.h"
+#include "constants.h"
 
-boarders::boarders():object(xy,'B')
+boarders::boarders(coords position):object(position,BOARDERS)
 {
 
 }

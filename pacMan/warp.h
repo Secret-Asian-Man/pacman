@@ -5,7 +5,7 @@
 class warp: public object
 {
 public:
-    warp();
+    warp(coords position);
     ~warp();
 };
 

@@ -6,7 +6,7 @@
 class boarders: public object
 {
 public:
-    boarders(coords xy);
+    boarders(coords position);
     ~boarders();
 };
 

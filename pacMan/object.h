@@ -2,7 +2,7 @@
 #define OBJECT_H
 #include "coords.h"
 
-class object: public object
+class object
 {
 public:
     object(coords xy, char objectType, int age=0, bool hasMoved=false, int speed=1);

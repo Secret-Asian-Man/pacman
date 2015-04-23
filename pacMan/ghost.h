@@ -5,7 +5,7 @@
 class ghost: public object
 {
 public:
-    ghost();
+    ghost(coords position);
     ~ghost();
 };
 

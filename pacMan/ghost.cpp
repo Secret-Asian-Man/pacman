@@ -1,6 +1,6 @@
 #include "ghost.h"
-
-ghost::ghost()
+#include "constants.h"
+ghost::ghost(coords position):object(position,GHOST)
 {
 
 }

@@ -5,7 +5,7 @@
 class powerPellet: public pellet
 {
 public:
-    powerPellet();
+    powerPellet(coords position);
     ~powerPellet();
 };
 
