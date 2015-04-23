@@ -9,8 +9,12 @@ public:
     pacman(coords position);
     ~pacman();
 
+    void command(object *board[][Y_DIMENSION], int direction);
+    int checkValid(int direction);
+
 private:
 
+    int _direction;
 };
 
 #endif // PACMAN_H
