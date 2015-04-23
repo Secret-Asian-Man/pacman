@@ -8,14 +8,15 @@ public:
     object(coords xy, char objectType, int age=0, bool hasMoved=false, int speed=1);
     ~object();
 
-    void virtual move();
+    void virtual move(object* board[][Y_DIMENSION],int direction);
     void virtual die();
-    char getType();
+    bool virtual object::isNULL(object* board[][Y_DIMENSION], coords checkHere);
+    int getType();
 
 
 private:
     coords _xy;
-    char _objectType;
+    int _objectType;
     int _age;
     bool _hasMoved;
     int _speed;

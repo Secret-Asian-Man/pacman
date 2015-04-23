@@ -1,0 +1,19 @@
+#ifndef PACMAN_H
+#define PACMAN_H
+#include "object.h"
+#include "coords.h"
+
+class pacman: public object
+{
+public:
+    pacman(coords position);
+    ~pacman();
+    
+    void command();
+
+private:
+    
+    int _direction;
+};
+
+#endif // PACMAN_H

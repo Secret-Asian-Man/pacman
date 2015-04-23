@@ -27,19 +27,39 @@ void grid::step()
 
 }
 
+
 void grid::show()
 {
+    cout<<"MAP"<<endl;
+    for(int i = 0; i < Y_DIMENSION; i++){
+        for(int j = 0; j < X_DIMENSION; j++){
+
+            if(_board[i][j] != NULL){
+                cout<<_board[i][j]->getType();
+            }// end if
+            else
+                cout<<" ";
+        }// end inner for
+        cout<<endl;
+    }// end outer for
+
 
 }
 
 void grid::loadFile()
 {
-    _mapData.open("PacManMap.txt");
-    _pelletData.open("PacManPellets.txt");
+    _mapData.open("Users\Les\Desktop\pacman\build-pacMan-Desktop_Qt_5_4_0_MinGW_32bit-Debug\PacManMap.txt");
+    _pelletData.open("Users\Les\Desktop\pacman\build-pacMan-Desktop_Qt_5_4_0_MinGW_32bit-Debug\PacManPellets.txt");
 
-    if (_mapData.fail() || _pelletData.fail()) //checks file
+    if (_mapData.fail()) /*|| _pelletData.fail()) //checks file*/
     {
-        cout<<endl<<"****** Could not open file ******"<<endl;
+        cout<<endl<<"****** Could not open msp file ******"<<endl;
+        exit(0);
+    }
+
+    if (_pelletData.fail()) /*|| _pelletData.fail()) //checks file*/
+    {
+        cout<<endl<<"****** Could not open pellet file ******"<<endl;
         exit(0);
     }
 

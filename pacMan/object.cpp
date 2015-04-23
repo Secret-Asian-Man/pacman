@@ -26,3 +26,6 @@ void object::die()
 
 }
 
+char object::getType(){
+    return _objectType;
+}
