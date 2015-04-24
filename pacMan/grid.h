@@ -25,6 +25,8 @@ private:
     std::ifstream _mapData;
     std::ifstream _pelletData;
 
+    int _pelletCount;
+
 
 
     //private functions

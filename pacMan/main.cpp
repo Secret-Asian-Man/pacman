@@ -7,6 +7,8 @@ int main()
 {
     grid game;
 
+    game.show();
+
 //test
 
     cout<<endl;

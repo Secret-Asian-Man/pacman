@@ -15,7 +15,9 @@ SOURCES += main.cpp \
     warp.cpp \
     pellet.cpp \
     powerpellet.cpp \
-    door.cpp
+    door.cpp \
+    ghostchild1.cpp \
+    ghostchild2.cpp
 
 include(deployment.pri)
 qtcAddDeployment()
@@ -33,5 +35,7 @@ HEADERS += \
     warp.h \
     pellet.h \
     powerpellet.h \
-    door.h
+    door.h \
+    ghostchild1.h \
+    ghostchild2.h
 

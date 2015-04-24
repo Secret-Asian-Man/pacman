@@ -12,4 +12,6 @@ INPUT(
 ./release\pellet.o
 ./release\powerpellet.o
 ./release\door.o
+./release\ghostchild1.o
+./release\ghostchild2.o
 );

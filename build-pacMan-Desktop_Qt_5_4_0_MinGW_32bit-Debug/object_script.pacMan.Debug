@@ -12,4 +12,6 @@ INPUT(
 ./debug\pellet.o
 ./debug\powerpellet.o
 ./debug\door.o
+./debug\ghostchild1.o
+./debug\ghostchild2.o
 );
