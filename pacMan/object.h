@@ -1,7 +1,7 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 #include "coords.h"
-
+#include "constants.h"
 class object
 {
 public:
@@ -26,8 +26,11 @@ public:
     void set_speed(int speed);
 
     //main functions
-    void virtual move();
+    void virtual move(object* board[][Y_DIMENSION],int direction);
     void virtual die();
+    bool virtual isNULL(object* board[][Y_DIMENSION], coords checkHere);
+    int getType();
+
 
 private:
     coords _position;

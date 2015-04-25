@@ -41,6 +41,7 @@ void grid::step()
 
 }
 
+
 void grid::show()
 {
     cout<<"DEBUG grid::show() FIRED!!!: "<<endl;
@@ -76,12 +77,20 @@ void grid::show()
 
 void grid::loadFile()
 {
-    _mapData.open("PacManMap.txt");
-    _pelletData.open("PacManPellets.txt");
+    _mapData.open("Users\Les\Desktop\pacman\build-pacMan-Desktop_Qt_5_4_0_MinGW_32bit-Debug\PacManMap.txt");
+    _pelletData.open("Users\Les\Desktop\pacman\build-pacMan-Desktop_Qt_5_4_0_MinGW_32bit-Debug\PacManPellets.txt");
+//    _mapData.open("PacManMap.txt");
+//    _pelletData.open("PacManPellets.txt");
 
-    if (_mapData.fail() || _pelletData.fail()) //checks file
+    if (_mapData.fail()) /*|| _pelletData.fail()) //checks file*/
     {
-        cout<<endl<<"****** Could not open file ******"<<endl;
+        cout<<endl<<"****** Could not open map file ******"<<endl;
+        exit(0);
+    }
+
+    if (_pelletData.fail()) /*|| _pelletData.fail()) //checks file*/
+    {
+        cout<<endl<<"****** Could not open pellet file ******"<<endl;
         exit(0);
     }
 

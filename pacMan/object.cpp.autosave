@@ -109,7 +109,7 @@ void object::move(object* board[][Y_DIMENSION], int direction)
         //================ down =====================
         case '2':
 
-            //board[temp.get_x()][temp.get_y()-1] = board_position[_position.get_y()];
+            board[temp.get_x()][temp.get_y()-1] = board_position[_position.get_y()];
            if(isNULL(board, temp)){
                board[_position.get_x()][_position.get_y()] = NULL;
                _position.set_x(temp.get_x());
