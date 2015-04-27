@@ -1,5 +1,6 @@
 #include "game.h"
 #include "constants.h"
+#include "grid.h"
 
 game::game()
 {
@@ -55,8 +56,13 @@ void game::keyEvents()
 void game::draw()
 {
     _window.clear();
-
-    //_window.draw();
+    for (int i=0;i<Y_DIMENSION;i++)
+    {
+        for (int j=0;j<X_DIMENSION;j++)
+        {
+            //_window.draw(_gameBoard._board[i][j]->);
+        }
+    }
 }
 
 void game::display()

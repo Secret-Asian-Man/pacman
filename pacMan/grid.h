@@ -17,8 +17,6 @@ public:
     void show();
 
 
-
-private:
     object* _board[X_DIMENSION][Y_DIMENSION]; //grid of creatures pointers
     object* _pellets[X_DIMENSION][Y_DIMENSION];
     std::ifstream _mapData;
@@ -27,7 +25,7 @@ private:
     int _pelletCount;
 
 
-
+private:
     //private functions
     void loadFile();
     void loadMap();

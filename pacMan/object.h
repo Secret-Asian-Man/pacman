@@ -31,6 +31,9 @@ public:
     bool virtual isNULL(object* board[][Y_DIMENSION], coords checkHere);
     int getType();
 
+    //tool functions
+protected:
+    void loadTexture(char *fileName);
 
 private:
     coords _position;
@@ -38,6 +41,11 @@ private:
     int _age;
     bool _hasMoved;
     int _speed;
+    sf::Texture _texture;
+    sf::Sprite _sprite;
+
+//private functions
+    void loadSprite();
 
 };
 

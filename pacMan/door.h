@@ -7,6 +7,9 @@ class door:public object
 public:
     door(coords position);
     ~door();
+
+private:
+    char* _fileName;
 };
 
 #endif // DOOR_H

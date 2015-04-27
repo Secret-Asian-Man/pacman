@@ -21,7 +21,7 @@ private:
     RenderWindow _window;
     Event _event;
 
-    //RectangleShape ; //gotta be a better to draw the shapes
+    //RectangleShape ; //gotta be a better way to draw the shapes
 
     //private functions
     void setWindow(); //initializes the window

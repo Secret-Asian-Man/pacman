@@ -2,11 +2,15 @@
 #define POWERPELLET_H
 #include "pellet.h"
 
-class powerPellet: public pellet
+class powerPellet: public object
 {
 public:
     powerPellet(coords position);
     ~powerPellet();
+
+private:
+    char* _fileName;
+
 };
 
 #endif // POWERPELLET_H

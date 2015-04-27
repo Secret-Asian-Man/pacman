@@ -6,6 +6,7 @@
 //X is collumns, Y is rows!
 const int X_DIMENSION=31; //orginal 31 (0 BASED!!)
 const int Y_DIMENSION=28; //original 28 (0 BASED!!)
+const int BOX_SIZE=25;
 
 const char PACMAN='M';
 const char WALLS='W';
@@ -30,8 +31,8 @@ const char NEXT_LINE=13; // return/enter key
 //R=Warp
 
 //SFML stuff
-const float WINDOW_WIDTH=600;
-const float WINDOW_HEIGHT=800;
+const float WINDOW_WIDTH=Y_DIMENSION*BOX_SIZE;
+const float WINDOW_HEIGHT=X_DIMENSION*BOX_SIZE;
 const std::string GAME_TITLE="Pacman";
 
 

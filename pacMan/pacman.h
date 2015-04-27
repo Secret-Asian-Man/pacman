@@ -15,6 +15,7 @@ public:
 private:
 
     int _direction;
+    char* _fileName;
 };
 
 #endif // PACMAN_H

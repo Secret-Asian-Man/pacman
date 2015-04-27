@@ -8,6 +8,8 @@ class boarders: public object
 public:
     boarders(coords position);
     ~boarders();
+
+    char* _fileName;
 };
 
 #endif // BOARDERS_H

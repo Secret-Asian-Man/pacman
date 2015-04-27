@@ -7,6 +7,10 @@ class ghostChild2:public ghost
 public:
     ghostChild2(coords position);
     ~ghostChild2();
+
+private:
+    char* _fileName;
+
 };
 
 #endif // GHOSTCHILD2_H

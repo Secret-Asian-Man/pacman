@@ -24,15 +24,17 @@ grid::grid()
 
 grid::~grid()
 {
-    for (int i=0;i<Y_DIMENSION;i++)
-    {
-        for (int j=0;j<X_DIMENSION;j++)
-        {
-            //cout<<i<<","<<j<<endl;
-            delete _board[i][j];
-            delete _pellets[i][j];
-        }
-    }
+
+    //WARNING: NOT CORRECT!! OVERFLOWWWWW!!
+//    for (int i=0;i<Y_DIMENSION;i++)
+//    {
+//        for (int j=0;j<X_DIMENSION;j++)
+//        {
+//            //cout<<i<<","<<j<<endl;
+//            delete _board[i][j];
+//            delete _pellets[i][j];
+//        }
+//    }
 
 }
 

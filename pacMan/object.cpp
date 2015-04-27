@@ -1,14 +1,20 @@
 #include "object.h"
 #include <iostream>
 
-object::object(coords position, char objectType, int age, bool hasMoved, int speed)
+
+
+//might be possible to have the child give the parent a char[](cstring), so the parent can load the correct data.
+//1.) parent is created with no textures.
+//2.) child is created with data about the texture.
+//3.) child constructor calls the parent's loadTexture(), giving the parent a cstring.
+//4.) parent creates a sprite from the texture
+object::object(coords position, char objectType,int age, bool hasMoved, int speed)
 {
     _position=position;
     _objectType=objectType;
     _age=age;
     _hasMoved=hasMoved;
     _speed=speed;
-
 }
 
 object::~object()
@@ -160,4 +166,17 @@ void object::die()
 
 int object::getType(){
     return _objectType;
+}
+
+void object::loadTexture(char* fileName)
+{
+    if (_texture.loadFromFile(fileName)==false)
+    {
+        std::cout<<"Error 401: File Not Found"<<std::endl;
+    }
+}
+
+void object::loadSprite()
+{
+    _sprite.setTexture(_texture);
 }
