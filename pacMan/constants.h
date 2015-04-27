@@ -1,5 +1,7 @@
 #ifndef CONSTANTS
 #define CONSTANTS
+#include <SFML/Graphics.hpp>
+#include <iostream>
 
 //X is collumns, Y is rows!
 const int X_DIMENSION=31; //orginal 31 (0 BASED!!)
@@ -16,8 +18,7 @@ const char BOARDERS='B';
 const char GHOST='G';
 const char GHOST_PELLET_POOPER='O';
 const char GHOST_GATE_DROPPER='A';
-const char NEXT_LINE=13;
-
+const char NEXT_LINE=13; // return/enter key
 //M=pacman
 //W=walls
 //P=pebble
@@ -28,8 +29,10 @@ const char NEXT_LINE=13;
 //G=ghost
 //R=Warp
 
-
-
+//SFML stuff
+const float WINDOW_WIDTH=600;
+const float WINDOW_HEIGHT=800;
+const std::string GAME_TITLE="Pacman";
 
 
 

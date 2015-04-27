@@ -17,7 +17,8 @@ SOURCES += main.cpp \
     powerpellet.cpp \
     door.cpp \
     ghostchild1.cpp \
-    ghostchild2.cpp
+    ghostchild2.cpp \
+    game.cpp
 
 include(deployment.pri)
 qtcAddDeployment()
@@ -37,5 +38,12 @@ HEADERS += \
     powerpellet.h \
     door.h \
     ghostchild1.h \
-    ghostchild2.h
+    ghostchild2.h \
+    game.h
 
+INCLUDEPATH += "C:/sfml-2.2/include/"
+
+LIBS += -L"C:/sfml-2.2/lib/"
+
+CONFIG(debug, debug|release): LIBS += -lsfml-graphics-d -lsfml-window-d -lsfml-audio-d -lsfml-network-d -lsfml-system-d
+CONFIG(release, debug|release): LIBS += -lsfml-graphics -lsfml-window -lsfml-audio -lsfml-network -lsfml-system

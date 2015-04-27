@@ -24,15 +24,15 @@ grid::grid()
 
 grid::~grid()
 {
-        for (int i=0;i<Y_DIMENSION;i++)
+    for (int i=0;i<Y_DIMENSION;i++)
+    {
+        for (int j=0;j<X_DIMENSION;j++)
         {
-            for (int j=0;j<X_DIMENSION;j++)
-            {
-                //cout<<i<<","<<j<<endl;
-                delete _board[i][j];
-                delete _pellets[i][j];
-            }
+            //cout<<i<<","<<j<<endl;
+            delete _board[i][j];
+            delete _pellets[i][j];
         }
+    }
 
 }
 
@@ -77,10 +77,10 @@ void grid::show()
 
 void grid::loadFile()
 {
-    _mapData.open("Users\Les\Desktop\pacman\build-pacMan-Desktop_Qt_5_4_0_MinGW_32bit-Debug\PacManMap.txt");
-    _pelletData.open("Users\Les\Desktop\pacman\build-pacMan-Desktop_Qt_5_4_0_MinGW_32bit-Debug\PacManPellets.txt");
-//    _mapData.open("PacManMap.txt");
-//    _pelletData.open("PacManPellets.txt");
+    //_mapData.open("Users\Les\Desktop\pacman\build-pacMan-Desktop_Qt_5_4_0_MinGW_32bit-Debug\PacManMap.txt");
+    //_pelletData.open("Users\Les\Desktop\pacman\build-pacMan-Desktop_Qt_5_4_0_MinGW_32bit-Debug\PacManPellets.txt");
+    _mapData.open("PacManMap.txt");
+    _pelletData.open("PacManPellets.txt");
 
     if (_mapData.fail()) /*|| _pelletData.fail()) //checks file*/
     {
@@ -175,46 +175,46 @@ void grid::loadMap()
 
     x=0;
     y=0;
-        while(!_pelletData.eof())
+    while(!_pelletData.eof())
+    {
+        _pelletData.get(singleChar);
+        if (singleChar==NEXT_LINE) //13 is the enter key
         {
-            _pelletData.get(singleChar);
-            if (singleChar==NEXT_LINE) //13 is the enter key
+            //cout<<endl;
+            //increment the row if it isn't past the MAX
+            x=0;
+            y++;
+        }
+        else
+        {
+
+            //                cout<<singleChar;
+            //have a switch case that points to the correct object.
+            //every time something is not NULL (aka it is a pellet or a powerPellet) do _pelletCount++;
+            switch (singleChar)
             {
-                //cout<<endl;
-                //increment the row if it isn't past the MAX
-                x=0;
-                y++;
-            }
-            else
-            {
+            case PELLET:
+                _pellets[y][x]=new pellet(coords(x,y));
+                x++;
+                break;
 
-//                cout<<singleChar;
-                //have a switch case that points to the correct object.
-                //every time something is not NULL (aka it is a pellet or a powerPellet) do _pelletCount++;
-                switch (singleChar)
-                {
-                case PELLET:
-                    _pellets[y][x]=new pellet(coords(x,y));
-                    x++;
-                    break;
+            case POWER_PELLET:
+                _pellets[y][x]=new powerPellet(coords(x,y));
+                x++;
+                break;
 
-                case POWER_PELLET:
-                    _pellets[y][x]=new powerPellet(coords(x,y));
-                    x++;
-                    break;
-
-                case NULLED:
-                    _pellets[y][x]=NULL;
-                    x++;
-                    break;
+            case NULLED:
+                _pellets[y][x]=NULL;
+                x++;
+                break;
 
 
-                default:
-                    //cout<<"Invalid key..."<<endl;
-                    break;
-                }
+            default:
+                //cout<<"Invalid key..."<<endl;
+                break;
             }
         }
+    }
 
     _mapData.close();
     _pelletData.close();

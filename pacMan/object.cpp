@@ -68,82 +68,82 @@ void object::set_speed(int speed)
 
 void object::move(object* board[][Y_DIMENSION], int direction)
 {
-    coords temp(_position.get_x(),_position.get_y());
+//    coords temp(_position.get_x(),_position.get_y());
 
-    // up = 0, right = 1, down = 2, left = 3
-    switch(direction){
-
-
-        //================ up =====================
-        case '0':
-
-            board[temp.get_x()][temp.get_y()+1] = board[_position.get_x()][_position.get_y()];
-            if(isNULL(board, temp)){
-                board[_position.get_x()][_position.get_y()] = NULL;
-                _position.set_x(temp.get_x());
-                _position.set_y(temp.get_y());
-
-                //set has moved to true;
-                _hasMoved = true;
-            }// end if
-
-        break;
+//    // up = 0, right = 1, down = 2, left = 3
+//    switch(direction){
 
 
-        //================ right =====================
-        case '1':
+//        //================ up =====================
+//        case '0':
 
-            board[temp.get_x()+1][temp.get_y()] = board[_position.get_x()][_position.get_y()];
-            if(isNULL(board, temp)){
-                board[_position.get_x()][_position.get_y()] = NULL;
-                _position.set_x(temp.get_x());
-                _position.set_y(temp.get_y());
+//            board[temp.get_x()][temp.get_y()+1] = board[_position.get_x()][_position.get_y()];
+//            if(isNULL(board, temp)){
+//                board[_position.get_x()][_position.get_y()] = NULL;
+//                _position.set_x(temp.get_x());
+//                _position.set_y(temp.get_y());
 
-                //set has moved to true;
-                _hasMoved = true;
-            }// end if
+//                //set has moved to true;
+//                _hasMoved = true;
+//            }// end if
 
-
-        break;
-
-        //================ down =====================
-        case '2':
-
-            //board[temp.get_x()][temp.get_y()-1] = board_position[_position.get_y()];
-           if(isNULL(board, temp)){
-               board[_position.get_x()][_position.get_y()] = NULL;
-               _position.set_x(temp.get_x());
-               _position.set_y(temp.get_y());
-
-               //set has moved to true;
-               _hasMoved = true;
-           }// end if
-
-        break;
-
-        //================ left =====================
-        case '3':
-
-            board[temp.get_x()-1][temp.get_y()] = board[_position.get_x()][_position.get_y()];
-            if(isNULL(board, temp)){
-              board[_position.get_x()][_position.get_y()] = NULL;
-              _position.set_x(temp.get_x());
-              _position.set_y(temp.get_y());
-
-              //set has moved to true;
-              _hasMoved = true;
-            }// end if
-        break;
-
-        default:
-
-            // direction is incorrect
-            //cout<<"*** move error ***"<<endl;
-            break;
+//        break;
 
 
+//        //================ right =====================
+//        case '1':
 
-    }// end switch
+//            board[temp.get_x()+1][temp.get_y()] = board[_position.get_x()][_position.get_y()];
+//            if(isNULL(board, temp)){
+//                board[_position.get_x()][_position.get_y()] = NULL;
+//                _position.set_x(temp.get_x());
+//                _position.set_y(temp.get_y());
+
+//                //set has moved to true;
+//                _hasMoved = true;
+//            }// end if
+
+
+//        break;
+
+//        //================ down =====================
+//        case '2':
+
+//            board[temp.get_x()][temp.get_y()-1] = board_position[_position.get_y()];
+//           if(isNULL(board, temp)){
+//               board[_position.get_x()][_position.get_y()] = NULL;
+//               _position.set_x(temp.get_x());
+//               _position.set_y(temp.get_y());
+
+//               //set has moved to true;
+//               _hasMoved = true;
+//           }// end if
+
+//        break;
+
+//        //================ left =====================
+//        case '3':
+
+//            board[temp.get_x()-1][temp.get_y()] = board[_position.get_x()][_position.get_y()];
+//            if(isNULL(board, temp)){
+//              board[_position.get_x()][_position.get_y()] = NULL;
+//              _position.set_x(temp.get_x());
+//              _position.set_y(temp.get_y());
+
+//              //set has moved to true;
+//              _hasMoved = true;
+//            }// end if
+//        break;
+
+//        default:
+
+//            // direction is incorrect
+//            //cout<<"*** move error ***"<<endl;
+//            break;
+
+
+
+//    }// end switch
 
 }
 bool object::isNULL(object* board[][Y_DIMENSION], coords checkHere){

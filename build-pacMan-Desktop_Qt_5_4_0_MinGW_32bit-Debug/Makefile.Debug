@@ -14,10 +14,10 @@ CXX           = g++
 DEFINES       = -DUNICODE
 CFLAGS        = -pipe -fno-keep-inline-dllexport -g -Wall -Wextra $(DEFINES)
 CXXFLAGS      = -pipe -fno-keep-inline-dllexport -g -frtti -Wall -Wextra -fexceptions -mthreads $(DEFINES)
-INCPATH       = -I..\pacMan -I"." -I"C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\win32-g++"
+INCPATH       = -I..\pacMan -I"C:\sfml-2.2\include" -I"." -I"C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\win32-g++"
 LINKER      =        g++
 LFLAGS        =        -Wl,-subsystem,console -mthreads
-LIBS        =         
+LIBS        =        -LC:/sfml-2.2/lib/ -lsfml-graphics-d -lsfml-window-d -lsfml-audio-d -lsfml-network-d -lsfml-system-d 
 QMAKE         = C:\Qt\Qt5.4.0\5.4\mingw491_32\bin\qmake.exe
 IDC           = idc
 IDL           = midl
@@ -57,7 +57,8 @@ SOURCES       = ..\pacMan\main.cpp \
 		..\pacMan\powerpellet.cpp \
 		..\pacMan\door.cpp \
 		..\pacMan\ghostchild1.cpp \
-		..\pacMan\ghostchild2.cpp 
+		..\pacMan\ghostchild2.cpp \
+		..\pacMan\game.cpp 
 OBJECTS       = debug/main.o \
 		debug/grid.o \
 		debug/object.o \
@@ -72,7 +73,8 @@ OBJECTS       = debug/main.o \
 		debug/powerpellet.o \
 		debug/door.o \
 		debug/ghostchild1.o \
-		debug/ghostchild2.o
+		debug/ghostchild2.o \
+		debug/game.o
 
 DIST          =  grid.h \
 		object.h \
@@ -88,7 +90,8 @@ DIST          =  grid.h \
 		powerpellet.h \
 		door.h \
 		ghostchild1.h \
-		ghostchild2.h ..\pacMan\main.cpp \
+		ghostchild2.h \
+		game.h ..\pacMan\main.cpp \
 		..\pacMan\grid.cpp \
 		..\pacMan\object.cpp \
 		..\pacMan\coords.cpp \
@@ -102,7 +105,8 @@ DIST          =  grid.h \
 		..\pacMan\powerpellet.cpp \
 		..\pacMan\door.cpp \
 		..\pacMan\ghostchild1.cpp \
-		..\pacMan\ghostchild2.cpp
+		..\pacMan\ghostchild2.cpp \
+		..\pacMan\game.cpp
 QMAKE_TARGET  = pacMan
 DESTDIR        = debug\ #avoid trailing-slash linebreak
 TARGET         = pacMan.exe
@@ -141,7 +145,7 @@ dist:
 	$(ZIP) pacMan.zip $(SOURCES) $(DIST) ..\pacMan\pacMan.pro C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\features\spec_pre.prf C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\qdevice.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\features\device_config.prf C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\common\shell-win32.conf C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\qconfig.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_axbase.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_axbase_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_axcontainer.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_axcontainer_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_axserver.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_axserver_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_bluetooth.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_bluetooth_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_bootstrap_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_clucene_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_concurrent.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_concurrent_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_core.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_core_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_declarative.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_declarative_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_designer.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_designer_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_enginio.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_enginio_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_gui.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_gui_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_help.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_help_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_location.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_location_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_multimedia.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_multimedia_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_multimediawidgets.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_multimediawidgets_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_network.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_network_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_nfc.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_nfc_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_opengl.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_opengl_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_openglextensions.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_openglextensions_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_platformsupport_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_positioning.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_positioning_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_printsupport.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_printsupport_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_qml.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_qml_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_qmldevtools_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_qmltest.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_qmltest_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_quick.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_quick_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_quickwidgets.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_script.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_script_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_scripttools.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_scripttools_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_sensors.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_sensors_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_serialport.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_serialport_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_sql.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_sql_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_svg.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_svg_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_testlib.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_testlib_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_uitools.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_uitools_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_webchannel.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_webchannel_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_webkit.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_webkit_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_webkitwidgets.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_webkitwidgets_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_websockets.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_websockets_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_webview.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_webview_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_widgets.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_widgets_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_winextras.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_winextras_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_xml.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_xml_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_xmlpatterns.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\modules\qt_lib_xmlpatterns_private.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\features\qt_functions.prf C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\features\qt_config.prf C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\features\win32\qt_config.prf C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\win32-g++\qmake.conf C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\features\spec_post.prf C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\features\exclusive_builds.prf C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\features\default_pre.prf C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\features\win32\default_pre.prf ..\pacMan\deployment.pri C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\features\resolve_config.prf C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\features\exclusive_builds_post.prf C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\features\default_post.prf C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\features\build_pass.prf C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\features\win32\console.prf C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\features\win32\rtti.prf C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\features\precompile_header.prf C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\features\warn_on.prf C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\features\testcase_targets.prf C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\features\exceptions.prf C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\features\yacc.prf C:\Qt\Qt5.4.0\5.4\mingw491_32\mkspecs\features\lex.prf ..\pacMan\pacMan.pro  NO_PCH_SOURCES YACCSOURCES YACCSOURCES LEXSOURCES 
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug\main.o debug\grid.o debug\object.o debug\coords.o debug\random.o debug\pacman.o debug\ghost.o debug\walls.o debug\boarders.o debug\warp.o debug\pellet.o debug\powerpellet.o debug\door.o debug\ghostchild1.o debug\ghostchild2.o
+	-$(DEL_FILE) debug\main.o debug\grid.o debug\object.o debug\coords.o debug\random.o debug\pacman.o debug\ghost.o debug\walls.o debug\boarders.o debug\warp.o debug\pellet.o debug\powerpellet.o debug\door.o debug\ghostchild1.o debug\ghostchild2.o debug\game.o
 
 distclean: clean 
 	-$(DEL_FILE) $(DESTDIR_TARGET)
@@ -166,17 +170,96 @@ compiler_clean:
 debug/main.o: ../pacMan/main.cpp ../pacMan/grid.h \
 		../pacMan/object.h \
 		../pacMan/coords.h \
-		../pacMan/constants.h
+		../pacMan/constants.h \
+		../pacMan/game.h \
+		C:/sfml-2.2/include/SFML/Graphics.hpp \
+		C:/sfml-2.2/include/SFML/Window.hpp \
+		C:/sfml-2.2/include/SFML/System.hpp \
+		C:/sfml-2.2/include/SFML/Config.hpp \
+		C:/sfml-2.2/include/SFML/System/Clock.hpp \
+		C:/sfml-2.2/include/SFML/System/Export.hpp \
+		C:/sfml-2.2/include/SFML/System/Time.hpp \
+		C:/sfml-2.2/include/SFML/System/Err.hpp \
+		C:/sfml-2.2/include/SFML/System/InputStream.hpp \
+		C:/sfml-2.2/include/SFML/System/Lock.hpp \
+		C:/sfml-2.2/include/SFML/System/NonCopyable.hpp \
+		C:/sfml-2.2/include/SFML/System/Mutex.hpp \
+		C:/sfml-2.2/include/SFML/System/Sleep.hpp \
+		C:/sfml-2.2/include/SFML/System/String.hpp \
+		C:/sfml-2.2/include/SFML/System/Utf.hpp \
+		C:/sfml-2.2/include/SFML/System/Utf.inl \
+		C:/sfml-2.2/include/SFML/System/String.inl \
+		C:/sfml-2.2/include/SFML/System/Thread.hpp \
+		C:/sfml-2.2/include/SFML/System/Thread.inl \
+		C:/sfml-2.2/include/SFML/System/ThreadLocal.hpp \
+		C:/sfml-2.2/include/SFML/System/ThreadLocalPtr.hpp \
+		C:/sfml-2.2/include/SFML/System/ThreadLocalPtr.inl \
+		C:/sfml-2.2/include/SFML/System/Vector2.hpp \
+		C:/sfml-2.2/include/SFML/System/Vector2.inl \
+		C:/sfml-2.2/include/SFML/System/Vector3.hpp \
+		C:/sfml-2.2/include/SFML/System/Vector3.inl \
+		C:/sfml-2.2/include/SFML/Window/Context.hpp \
+		C:/sfml-2.2/include/SFML/Window/Export.hpp \
+		C:/sfml-2.2/include/SFML/Window/GlResource.hpp \
+		C:/sfml-2.2/include/SFML/Window/ContextSettings.hpp \
+		C:/sfml-2.2/include/SFML/Window/Event.hpp \
+		C:/sfml-2.2/include/SFML/Window/Joystick.hpp \
+		C:/sfml-2.2/include/SFML/Window/Keyboard.hpp \
+		C:/sfml-2.2/include/SFML/Window/Mouse.hpp \
+		C:/sfml-2.2/include/SFML/Window/Sensor.hpp \
+		C:/sfml-2.2/include/SFML/Window/Touch.hpp \
+		C:/sfml-2.2/include/SFML/Window/VideoMode.hpp \
+		C:/sfml-2.2/include/SFML/Window/Window.hpp \
+		C:/sfml-2.2/include/SFML/Window/WindowHandle.hpp \
+		C:/sfml-2.2/include/SFML/Window/WindowStyle.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/BlendMode.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/Export.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/Color.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/Font.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/Glyph.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/Rect.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/Rect.inl \
+		C:/sfml-2.2/include/SFML/Graphics/Texture.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/Image.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/RenderStates.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/Transform.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/RenderTexture.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/RenderTarget.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/View.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/PrimitiveType.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/Vertex.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/RenderWindow.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/Shader.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/Shape.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/Drawable.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/Transformable.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/VertexArray.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/CircleShape.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/RectangleShape.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/ConvexShape.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/Sprite.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/Text.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o ..\pacMan\main.cpp
 
 debug/grid.o: ../pacMan/grid.cpp ../pacMan/grid.h \
 		../pacMan/object.h \
 		../pacMan/coords.h \
-		../pacMan/constants.h
+		../pacMan/constants.h \
+		../pacMan/boarders.h \
+		../pacMan/door.h \
+		../pacMan/ghostchild1.h \
+		../pacMan/ghost.h \
+		../pacMan/ghostchild2.h \
+		../pacMan/pacman.h \
+		../pacMan/pellet.h \
+		../pacMan/powerpellet.h \
+		../pacMan/walls.h \
+		../pacMan/warp.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\grid.o ..\pacMan\grid.cpp
 
 debug/object.o: ../pacMan/object.cpp ../pacMan/object.h \
-		../pacMan/coords.h
+		../pacMan/coords.h \
+		../pacMan/constants.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\object.o ..\pacMan\object.cpp
 
 debug/coords.o: ../pacMan/coords.cpp ../pacMan/coords.h
@@ -237,14 +320,90 @@ debug/door.o: ../pacMan/door.cpp ../pacMan/door.h \
 debug/ghostchild1.o: ../pacMan/ghostchild1.cpp ../pacMan/ghostchild1.h \
 		../pacMan/ghost.h \
 		../pacMan/object.h \
-		../pacMan/coords.h
+		../pacMan/coords.h \
+		../pacMan/constants.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\ghostchild1.o ..\pacMan\ghostchild1.cpp
 
 debug/ghostchild2.o: ../pacMan/ghostchild2.cpp ../pacMan/ghostchild2.h \
 		../pacMan/ghost.h \
 		../pacMan/object.h \
-		../pacMan/coords.h
+		../pacMan/coords.h \
+		../pacMan/constants.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\ghostchild2.o ..\pacMan\ghostchild2.cpp
+
+debug/game.o: ../pacMan/game.cpp ../pacMan/game.h \
+		../pacMan/grid.h \
+		../pacMan/object.h \
+		../pacMan/coords.h \
+		../pacMan/constants.h \
+		C:/sfml-2.2/include/SFML/Graphics.hpp \
+		C:/sfml-2.2/include/SFML/Window.hpp \
+		C:/sfml-2.2/include/SFML/System.hpp \
+		C:/sfml-2.2/include/SFML/Config.hpp \
+		C:/sfml-2.2/include/SFML/System/Clock.hpp \
+		C:/sfml-2.2/include/SFML/System/Export.hpp \
+		C:/sfml-2.2/include/SFML/System/Time.hpp \
+		C:/sfml-2.2/include/SFML/System/Err.hpp \
+		C:/sfml-2.2/include/SFML/System/InputStream.hpp \
+		C:/sfml-2.2/include/SFML/System/Lock.hpp \
+		C:/sfml-2.2/include/SFML/System/NonCopyable.hpp \
+		C:/sfml-2.2/include/SFML/System/Mutex.hpp \
+		C:/sfml-2.2/include/SFML/System/Sleep.hpp \
+		C:/sfml-2.2/include/SFML/System/String.hpp \
+		C:/sfml-2.2/include/SFML/System/Utf.hpp \
+		C:/sfml-2.2/include/SFML/System/Utf.inl \
+		C:/sfml-2.2/include/SFML/System/String.inl \
+		C:/sfml-2.2/include/SFML/System/Thread.hpp \
+		C:/sfml-2.2/include/SFML/System/Thread.inl \
+		C:/sfml-2.2/include/SFML/System/ThreadLocal.hpp \
+		C:/sfml-2.2/include/SFML/System/ThreadLocalPtr.hpp \
+		C:/sfml-2.2/include/SFML/System/ThreadLocalPtr.inl \
+		C:/sfml-2.2/include/SFML/System/Vector2.hpp \
+		C:/sfml-2.2/include/SFML/System/Vector2.inl \
+		C:/sfml-2.2/include/SFML/System/Vector3.hpp \
+		C:/sfml-2.2/include/SFML/System/Vector3.inl \
+		C:/sfml-2.2/include/SFML/Window/Context.hpp \
+		C:/sfml-2.2/include/SFML/Window/Export.hpp \
+		C:/sfml-2.2/include/SFML/Window/GlResource.hpp \
+		C:/sfml-2.2/include/SFML/Window/ContextSettings.hpp \
+		C:/sfml-2.2/include/SFML/Window/Event.hpp \
+		C:/sfml-2.2/include/SFML/Window/Joystick.hpp \
+		C:/sfml-2.2/include/SFML/Window/Keyboard.hpp \
+		C:/sfml-2.2/include/SFML/Window/Mouse.hpp \
+		C:/sfml-2.2/include/SFML/Window/Sensor.hpp \
+		C:/sfml-2.2/include/SFML/Window/Touch.hpp \
+		C:/sfml-2.2/include/SFML/Window/VideoMode.hpp \
+		C:/sfml-2.2/include/SFML/Window/Window.hpp \
+		C:/sfml-2.2/include/SFML/Window/WindowHandle.hpp \
+		C:/sfml-2.2/include/SFML/Window/WindowStyle.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/BlendMode.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/Export.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/Color.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/Font.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/Glyph.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/Rect.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/Rect.inl \
+		C:/sfml-2.2/include/SFML/Graphics/Texture.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/Image.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/RenderStates.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/Transform.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/RenderTexture.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/RenderTarget.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/View.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/PrimitiveType.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/Vertex.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/RenderWindow.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/Shader.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/Shape.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/Drawable.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/Transformable.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/VertexArray.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/CircleShape.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/RectangleShape.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/ConvexShape.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/Sprite.hpp \
+		C:/sfml-2.2/include/SFML/Graphics/Text.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\game.o ..\pacMan\game.cpp
 
 ####### Install
 
