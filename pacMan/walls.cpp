@@ -6,6 +6,8 @@ walls::walls(coords position):object(position,WALLS)
     char fileName[]="walls.png";
     _fileName=fileName;
     object::loadTexture(_fileName);
+    object::loadSprite();
+
 }
 
 walls::~walls()

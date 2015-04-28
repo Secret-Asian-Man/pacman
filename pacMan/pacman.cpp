@@ -1,14 +1,14 @@
 #include "pacman.h"
 #include "constants.h"
 
-//how would the child give the parent some data, if the parent is born first
-//if not possible have the child take care of the textures
 
 pacman::pacman(coords position):object(position,PACMAN)
 {
     char fileName[]="pacman.png";
     _fileName=fileName;
-    object::loadTexture(_fileName); //@GO DRAW THE SPRITES NOW!!! AND LOAD TEXTURES IN THE REST OF THE CHILDS@
+    object::loadTexture(_fileName);
+    object::loadSprite();
+
 
         _direction = -1;
 }

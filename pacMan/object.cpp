@@ -7,7 +7,7 @@
 //1.) parent is created with no textures.
 //2.) child is created with data about the texture.
 //3.) child constructor calls the parent's loadTexture(), giving the parent a cstring.
-//4.) parent creates a sprite from the texture
+//4.) child calls the parents loadSprite()
 object::object(coords position, char objectType,int age, bool hasMoved, int speed)
 {
     _position=position;
@@ -45,6 +45,16 @@ bool object::get_hasmoved()
 int object::get_speed()
 {
     return _speed;
+}
+
+sf::Sprite object::get_sprite()
+{
+ return _sprite;
+}
+
+sf::Texture object::get_texture()
+{
+    return _texture;
 }
 
 void object::set_position(coords position)
@@ -179,4 +189,5 @@ void object::loadTexture(char* fileName)
 void object::loadSprite()
 {
     _sprite.setTexture(_texture);
+
 }

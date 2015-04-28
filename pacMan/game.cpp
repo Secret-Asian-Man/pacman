@@ -22,11 +22,30 @@ void game::setWindow()
 
 void game::gameStart()
 {
+    initialMove();
+
     while (_window.isOpen())
     {
         keyEvents();
         draw();
         display();
+    }
+}
+
+void game::initialMove()
+{
+    for (int i=0;i<Y_DIMENSION-1;i++)
+    {
+        for (int j=0;j<X_DIMENSION-1;j++)
+        {
+            if (_gameBoard._board[i][j]!=NULL)
+            {
+                //the line below needs to be in a diff functions to initialize, no looping allowed@@@@
+                // _gameBoard._board[i][j]->get_position().print_xy();
+                _gameBoard._board[i][j]->_sprite.setPosition(_gameBoard._board[i][j]->get_position().get_x()*BOX_SIZE,
+                                                             _gameBoard._board[i][j]->get_position().get_y()*BOX_SIZE);
+            }
+        }
     }
 }
 
@@ -56,11 +75,20 @@ void game::keyEvents()
 void game::draw()
 {
     _window.clear();
-    for (int i=0;i<Y_DIMENSION;i++)
+
+    //    sf::CircleShape shape(100.f);
+    //    shape.setFillColor(sf::Color::Green);
+    //    _window.draw(shape);
+
+
+    for (int i=0;i<Y_DIMENSION-1;i++)
     {
-        for (int j=0;j<X_DIMENSION;j++)
+        for (int j=0;j<X_DIMENSION-1;j++)
         {
-            //_window.draw(_gameBoard._board[i][j]->);
+            if (_gameBoard._board[i][j]!=NULL)
+            {
+                _window.draw(_gameBoard._board[i][j]->_sprite);// GOT TEXTURES AND SPRITES DRAW THEM NOW!!! MOVES THEM TOO!
+            }
         }
     }
 }

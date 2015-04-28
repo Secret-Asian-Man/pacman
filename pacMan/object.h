@@ -17,6 +17,8 @@ public:
     int get_age();
     bool get_hasmoved();
     int get_speed();
+    sf::Sprite get_sprite();
+    sf::Texture get_texture();
 
     //mutators
     void set_position(coords position);
@@ -31,9 +33,15 @@ public:
     bool virtual isNULL(object* board[][Y_DIMENSION], coords checkHere);
     int getType();
 
+    //public variables
+    sf::Texture _texture;
+    sf::Sprite _sprite;
+
+
     //tool functions
 protected:
     void loadTexture(char *fileName);
+    void loadSprite();
 
 private:
     coords _position;
@@ -41,11 +49,6 @@ private:
     int _age;
     bool _hasMoved;
     int _speed;
-    sf::Texture _texture;
-    sf::Sprite _sprite;
-
-//private functions
-    void loadSprite();
 
 };
 

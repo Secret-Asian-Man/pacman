@@ -24,17 +24,15 @@ grid::grid()
 
 grid::~grid()
 {
-
-    //WARNING: NOT CORRECT!! OVERFLOWWWWW!!
-//    for (int i=0;i<Y_DIMENSION;i++)
-//    {
-//        for (int j=0;j<X_DIMENSION;j++)
-//        {
-//            //cout<<i<<","<<j<<endl;
-//            delete _board[i][j];
-//            delete _pellets[i][j];
-//        }
-//    }
+    for (int i=0;i<Y_DIMENSION-1;i++)
+    {
+        for (int j=0;j<X_DIMENSION-1;j++)
+        {
+            //cout<<i<<","<<j<<endl;
+            delete _board[i][j];
+            delete _pellets[i][j];
+        }
+    }
 
 }
 
@@ -108,22 +106,22 @@ void grid::loadMap()
     loadFile();
 
 
-
-    while(!_mapData.eof())
+    while(!_mapData.eof()) //count starts from y:1-28, and x:1-31
     {
         _mapData.get(singleChar);
-        if (singleChar==NEXT_LINE) //13 is the enter key
+        if (singleChar==NEXT_LINE) //10 is the enter key
         {
             //cout<<endl;
             //increment the row if it isn't past the MAX
-            x=0;
-            y++;
+            x=0; //collumn
+            y++; //rows
         }
         else
         {
             //cout<<singleChar;
             //have a switch case that points to the correct object.
-
+            //x is collumns
+            //y is rows
             switch (singleChar)
             {
             case PACMAN:
@@ -162,6 +160,7 @@ void grid::loadMap()
                 break;
 
             case BOARDERS:
+                //cout<<"DEBUG coords: "<<x<<","<<y<<endl; //x and y is smaller by 1 (need to add one)@@@@@@@
                 _board[y][x]=new boarders(coords(x,y));
                 x++;
                 break;
@@ -302,9 +301,9 @@ R=Warp
 
 void grid::initializeToNull()
 {
-    for (int i=0;i<Y_DIMENSION;i++)
+    for (int i=0;i<Y_DIMENSION-1;i++)
     {
-        for (int j=0;j<X_DIMENSION;j++)
+        for (int j=0;j<X_DIMENSION-1;j++)
         {
             _board[i][j]==NULL;
             _pellets[i][j]==NULL;
