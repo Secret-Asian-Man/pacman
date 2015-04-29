@@ -8,8 +8,6 @@ public:
     pellet(coords position);
     ~pellet();
 
-    void die();
-
 
 private:
     char* _fileName;

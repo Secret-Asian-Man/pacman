@@ -16,6 +16,8 @@ using namespace std;
 grid::grid()
 {
     _pelletCount=0;
+    _gameState=normal;
+    _pacmanDirection=none;
     initializeToNull();
     loadMap();
 
@@ -36,8 +38,46 @@ grid::~grid()
 
 }
 
+int grid::get_pelletCount()
+{
+    return _pelletCount;
+}
+
+gameState grid::get_gameState()
+{
+    return _gameState;
+}
+
+directions grid::get_directions()
+{
+    return _pacmanDirection;
+}
+
+void grid::set_pelletCount(int other)
+{
+    _pelletCount=other;
+}
+
+void grid::set_gameState(gameState other)
+{
+    _gameState=other;
+}
+
+void grid::set_directions(directions other)
+{
+    _pacmanDirection=other;
+}
+
 void grid::step()
 {
+    if (_gameState==normal)
+    {
+        //before calling die function, check the oject's type. If the object is a pellet run decrement_pelletcount(),
+        //else die normally.
+
+        //call move pacMan's move function in here using _pacmanDirection
+    }
+
 
 }
 
@@ -73,6 +113,16 @@ void grid::show()
         }
         cout<<endl;
     }
+}
+
+void grid::increment_pelletCount()
+{
+    _pelletCount++;
+}
+
+void grid::decrement_pelletCount()
+{
+    _pelletCount--;
 }
 
 void grid::loadFile()
@@ -178,10 +228,12 @@ void grid::loadMap()
         case PELLET:
             _pellets[y][x]=new pellet(coords(x,y));
             x++;
+            increment_pelletCount();
             break;
 
         case POWER_PELLET:
             _pellets[y][x]=new powerPellet(coords(x,y));
+            increment_pelletCount();
             x++;
             break;
 

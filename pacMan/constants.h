@@ -1,3 +1,4 @@
+
 #ifndef CONSTANTS
 #define CONSTANTS
 #include <SFML/Graphics.hpp>
@@ -6,7 +7,10 @@
 //X is collumns, Y is rows!
 const int X_DIMENSION=28; //orginal 31 (0 BASED!!)
 const int Y_DIMENSION=31; //original 28 (0 BASED!!)
+const int HUD_SIZE=50;
 const int BOX_SIZE=25;
+
+const int LIVES=3;
 
 const char PACMAN='M';
 const char WALLS='W';

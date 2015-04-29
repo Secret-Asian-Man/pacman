@@ -14,19 +14,19 @@ game::~game()
 
 }
 
-
 void game::setWindow()
 {
-    _window.create(VideoMode(WINDOW_WIDTH,WINDOW_HEIGHT),GAME_TITLE);
+    _window.create(VideoMode(WINDOW_WIDTH,WINDOW_HEIGHT+HUD_SIZE),GAME_TITLE);
 }
 
 void game::gameStart()
 {
     initialMove();
 
-    while (_window.isOpen())
+    while (_window.isOpen()) //and game is not paused do these. The keyEvents() is what changes the movement input, and then afterwards is it simply displayed in sfml
     {
         keyEvents();
+        _gameBoard.step(); //the brains
         draw();
         display();
     }
@@ -72,6 +72,30 @@ void game::keyEvents()
         case Keyboard::Escape:
             cout<<"esc button pressed"<<endl;
             _window.close();
+            break;
+
+        case Keyboard::A:
+        case Keyboard::Left:
+            //changes the move's input
+            _gameBoard.set_directions(goLeft);
+            break;
+
+        case Keyboard::D:
+        case Keyboard::Right:
+            //changes the move's input
+            _gameBoard.set_directions(goRight);
+            break;
+
+        case Keyboard::W:
+        case Keyboard::Up:
+            //changes the move's input
+            _gameBoard.set_directions(goUp);
+            break;
+
+        case Keyboard::S:
+        case Keyboard::Down:
+            //changes the move's input
+            _gameBoard.set_directions(goDown);
             break;
 
         default:

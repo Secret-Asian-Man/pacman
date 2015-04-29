@@ -12,9 +12,12 @@ public:
     void command(object *board[][X_DIMENSION], int direction);
     int checkValid(int direction);
 
+    void die(object* board[][X_DIMENSION]);
+
 private:
 
     int _direction;
+    int _lives;
     char* _fileName;
 };
 

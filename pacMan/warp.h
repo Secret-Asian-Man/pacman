@@ -10,6 +10,7 @@ public:
 
 private:
     char* _fileName;
+    warp* other; //have this warp point to the other warp, ask David
 
 };
 
