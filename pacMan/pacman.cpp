@@ -26,7 +26,7 @@ int pacman::checkValid(int direction){
 
 }
 
-void pacman::command(object* board[][Y_DIMENSION], int direction){
+void pacman::command(object* board[][X_DIMENSION], int direction){
 
     // check if you can move there
     move(board, direction);

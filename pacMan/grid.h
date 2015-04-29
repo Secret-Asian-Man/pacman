@@ -17,8 +17,8 @@ public:
     void show();
 
 
-    object* _board[X_DIMENSION][Y_DIMENSION]; //grid of creatures pointers
-    object* _pellets[X_DIMENSION][Y_DIMENSION];
+    object* _board[Y_DIMENSION][X_DIMENSION]; //grid of creatures pointers
+    object* _pellets[Y_DIMENSION][X_DIMENSION];
     std::ifstream _mapData;
     std::ifstream _pelletData;
 

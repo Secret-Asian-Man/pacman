@@ -15,4 +15,9 @@ pellet::~pellet()
 
 }
 
+void pellet::die()
+{
+
+}
+
 

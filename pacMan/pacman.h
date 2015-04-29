@@ -9,7 +9,7 @@ public:
     pacman(coords position);
     ~pacman();
 
-    void command(object *board[][Y_DIMENSION], int direction);
+    void command(object *board[][X_DIMENSION], int direction);
     int checkValid(int direction);
 
 private:

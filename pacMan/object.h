@@ -28,9 +28,9 @@ public:
     void set_speed(int speed);
 
     //main functions
-    void virtual move(object* board[][Y_DIMENSION],int direction);
-    void virtual die();
-    bool virtual isNULL(object* board[][Y_DIMENSION], coords checkHere);
+    void virtual move(object* board[][X_DIMENSION],int direction);
+    void virtual die(object* board[][X_DIMENSION]);
+    bool virtual isNULL(object* board[][X_DIMENSION], coords checkHere);
     int getType();
 
     //public variables

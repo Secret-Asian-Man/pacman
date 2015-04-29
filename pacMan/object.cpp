@@ -82,7 +82,7 @@ void object::set_speed(int speed)
     _speed=speed;
 }
 
-void object::move(object* board[][Y_DIMENSION], int direction)
+void object::move(object* board[][X_DIMENSION], int direction)
 {
 //    coords temp(_position.get_x(),_position.get_y());
 
@@ -162,16 +162,17 @@ void object::move(object* board[][Y_DIMENSION], int direction)
 //    }// end switch
 
 }
-bool object::isNULL(object* board[][Y_DIMENSION], coords checkHere){
-    if(board[checkHere.get_x()][checkHere.get_y()] == NULL)
+bool object::isNULL(object* board[][X_DIMENSION], coords checkHere){
+    if(board[checkHere.get_y()][checkHere.get_x()] == NULL)
         return true;
     else
         return false;
 }// end check pos
 
-void object::die()
+void object::die(object* board[][X_DIMENSION])
 {
-
+    delete board[_position.get_y()][_position.get_x()];
+    board[_position.get_y()][_position.get_x()]=NULL;
 }
 
 int object::getType(){

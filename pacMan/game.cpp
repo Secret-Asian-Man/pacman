@@ -34,9 +34,9 @@ void game::gameStart()
 
 void game::initialMove()
 {
-    for (int i=0;i<Y_DIMENSION-1;i++)
+    for (int i=0;i<Y_DIMENSION;i++)
     {
-        for (int j=0;j<X_DIMENSION-1;j++)
+        for (int j=0;j<X_DIMENSION;j++)
         {
             if (_gameBoard._board[i][j]!=NULL)
             {
@@ -44,6 +44,14 @@ void game::initialMove()
                 // _gameBoard._board[i][j]->get_position().print_xy();
                 _gameBoard._board[i][j]->_sprite.setPosition(_gameBoard._board[i][j]->get_position().get_x()*BOX_SIZE,
                                                              _gameBoard._board[i][j]->get_position().get_y()*BOX_SIZE);
+            }
+
+            if (_gameBoard._pellets[i][j]!=NULL)
+            {
+                //the line below needs to be in a diff functions to initialize, no looping allowed@@@@
+                // _gameBoard._board[i][j]->get_position().print_xy();
+                _gameBoard._pellets[i][j]->_sprite.setPosition(_gameBoard._pellets[i][j]->get_position().get_x()*BOX_SIZE,
+                                                             _gameBoard._pellets[i][j]->get_position().get_y()*BOX_SIZE);
             }
         }
     }
@@ -56,11 +64,13 @@ void game::keyEvents()
         if (_event.type==Event::Closed) //if X button is pressed close the window
         {
             _window.close();
+            cout<<"close button click"<<endl;
         }
 
         switch (_event.key.code) //takes in user inputs and performs actions
         {
         case Keyboard::Escape:
+            cout<<"esc button pressed"<<endl;
             _window.close();
             break;
 
@@ -81,13 +91,17 @@ void game::draw()
     //    _window.draw(shape);
 
 
-    for (int i=0;i<Y_DIMENSION-1;i++)
+    for (int i=0;i<Y_DIMENSION;i++)
     {
-        for (int j=0;j<X_DIMENSION-1;j++)
+        for (int j=0;j<X_DIMENSION;j++)
         {
             if (_gameBoard._board[i][j]!=NULL)
             {
-                _window.draw(_gameBoard._board[i][j]->_sprite);// GOT TEXTURES AND SPRITES DRAW THEM NOW!!! MOVES THEM TOO!
+                _window.draw(_gameBoard._board[i][j]->_sprite);
+            }
+            if (_gameBoard._pellets[i][j]!=NULL)
+            {
+                _window.draw(_gameBoard._pellets[i][j]->_sprite);
             }
         }
     }
