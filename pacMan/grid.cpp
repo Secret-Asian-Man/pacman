@@ -74,7 +74,6 @@ void grid::step()
     {
         //before calling die function, check the oject's type. If the object is a pellet run decrement_pelletcount(),
         //else die normally.
-
         //call move pacMan's move function in here using _pacmanDirection
     }
 

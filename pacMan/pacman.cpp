@@ -39,6 +39,16 @@ void pacman::die(object *board[][X_DIMENSION])
 
 }
 
+void pacman::move(object *board[][X_DIMENSION], int direction)
+{
+//    coords temp=object::get_position();
+
+//    board[object::get_position().get_y()][object::get_position().get_x()+1]=board[object::get_position().get_y()][object::get_position().get_x()];
+
+//    object.set_position(new coords(object::get_position().get_x()+1,object::get_position().get_y()));
+//    board[temp.get_y()][temp.get_x()]==NULL;
+}
+
 void pacman::command(object* board[][X_DIMENSION], int direction){
 
     // check if you can move there

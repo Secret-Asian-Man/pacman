@@ -13,10 +13,10 @@ enum gameState{//MAY MOVE THIS TO GAME.H
 
 enum directions{
     none=-1,
-    goLeft=0,
+    goLeft=3,
     goRight=1,
-    goUp=2,
-    goDown=3
+    goUp=0,
+    goDown=2
 };
 
 class grid

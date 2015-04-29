@@ -9,10 +9,10 @@ public:
     pacman(coords position);
     ~pacman();
 
-    void command(object *board[][X_DIMENSION], int direction);
     int checkValid(int direction);
-
+    void command(object *board[][X_DIMENSION], int direction);
     void die(object* board[][X_DIMENSION]);
+    void move(object *board[][X_DIMENSION], int direction);
 
 private:
 

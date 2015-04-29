@@ -77,25 +77,25 @@ void game::keyEvents()
         case Keyboard::A:
         case Keyboard::Left:
             //changes the move's input
-            _gameBoard.set_directions(goLeft);
+            _gameBoard.set_directions(goLeft); //send int 3
             break;
 
         case Keyboard::D:
         case Keyboard::Right:
             //changes the move's input
-            _gameBoard.set_directions(goRight);
+            _gameBoard.set_directions(goRight); //send int 1
             break;
 
         case Keyboard::W:
         case Keyboard::Up:
             //changes the move's input
-            _gameBoard.set_directions(goUp);
+            _gameBoard.set_directions(goUp); //sends int 0
             break;
 
         case Keyboard::S:
         case Keyboard::Down:
             //changes the move's input
-            _gameBoard.set_directions(goDown);
+            _gameBoard.set_directions(goDown); //sends int 2
             break;
 
         default:
