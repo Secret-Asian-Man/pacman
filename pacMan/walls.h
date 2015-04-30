@@ -9,6 +9,8 @@ public:
     walls(coords position);
     ~walls();
 
+    void die(object *board[][X_DIMENSION]);
+
 private:
     char* _fileName;
 

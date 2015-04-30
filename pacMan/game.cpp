@@ -4,6 +4,8 @@
 
 game::game()
 {
+    _time=Time::Zero;
+
     setWindow();
     gameStart();
 
@@ -23,12 +25,26 @@ void game::gameStart()
 {
     initialMove();
 
+
+
     while (_window.isOpen()) //and game is not paused do these. The keyEvents() is what changes the movement input, and then afterwards is it simply displayed in sfml
     {
-        keyEvents();
-        _gameBoard.step(); //the brains
-        draw();
-        display();
+        while(_window.pollEvent(_event))
+        {
+            keyEvents();
+        }
+
+        _time=_clock.getElapsedTime();
+        if (_time.asMilliseconds()>=RATE-_time.asMilliseconds())
+        {
+            _gameBoard.step(); //the brains
+            _clock.restart();
+
+            draw();
+            display();
+
+        }
+
     }
 }
 
@@ -76,25 +92,25 @@ void game::keyEvents()
 
         case Keyboard::A:
         case Keyboard::Left:
-            //changes the move's input
+            cout<<"Left button pressed"<<endl;
             _gameBoard.set_directions(goLeft); //send int 3
             break;
 
         case Keyboard::D:
         case Keyboard::Right:
-            //changes the move's input
+            cout<<"Right button pressed"<<endl;
             _gameBoard.set_directions(goRight); //send int 1
             break;
 
         case Keyboard::W:
         case Keyboard::Up:
-            //changes the move's input
+            cout<<"Up button pressed"<<endl;
             _gameBoard.set_directions(goUp); //sends int 0
             break;
 
         case Keyboard::S:
         case Keyboard::Down:
-            //changes the move's input
+            cout<<"Down button pressed"<<endl;
             _gameBoard.set_directions(goDown); //sends int 2
             break;
 
@@ -110,17 +126,13 @@ void game::draw()
 {
     _window.clear();
 
-    //    sf::CircleShape shape(100.f);
-    //    shape.setFillColor(sf::Color::Green);
-    //    _window.draw(shape);
-
-
     for (int i=0;i<Y_DIMENSION;i++)
     {
         for (int j=0;j<X_DIMENSION;j++)
         {
             if (_gameBoard._board[i][j]!=NULL)
             {
+
                 _window.draw(_gameBoard._board[i][j]->_sprite);
             }
             if (_gameBoard._pellets[i][j]!=NULL)

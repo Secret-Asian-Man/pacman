@@ -19,13 +19,6 @@ pacman::~pacman()
 
 }
 
-int pacman::checkValid(int direction){
-
-    if(direction >= 0 && direction <= 3)
-        return direction;
-
-
-}
 
 void pacman::die(object *board[][X_DIMENSION])
 {
@@ -39,20 +32,72 @@ void pacman::die(object *board[][X_DIMENSION])
 
 }
 
-void pacman::move(object *board[][X_DIMENSION], int direction)
+void pacman::move(object *board[][X_DIMENSION], object* pellets[][X_DIMENSION], directions choice)
 {
-//    coords temp=object::get_position();
+//    std::cout<<"DEBUG pacman::move: "<<std::endl;
 
-//    board[object::get_position().get_y()][object::get_position().get_x()+1]=board[object::get_position().get_y()][object::get_position().get_x()];
+//    checkPellet(pellets, choice);
+    object::move(board, pellets, choice);
 
-//    object.set_position(new coords(object::get_position().get_x()+1,object::get_position().get_y()));
-//    board[temp.get_y()][temp.get_x()]==NULL;
 }
 
-void pacman::command(object* board[][X_DIMENSION], int direction){
+void pacman::checkPellet(object* pellet[][X_DIMENSION], directions choice)
+{
 
-    // check if you can move there
-    move(board, direction);
+   coords temp(object::get_position()); //pacman's position
 
-    _direction = direction;
+    // up = 0, right = 1, down = 2, left = 3
+    switch(choice){
+
+        //================ up =====================
+        case goUp:
+
+        if(pellet[temp.get_y()][temp.get_x()+1]->getType() == PELLET ){
+            pellet[temp.get_y()][temp.get_x()+1]->die(pellet);
+            // decrement pellet
+        }// end if
+
+        break;
+
+
+        //================ right =====================
+        case goRight:
+
+        if(pellet[temp.get_y()+1][temp.get_x()]->getType() == PELLET ){
+            pellet[temp.get_y()+1][temp.get_x()]->die(pellet);
+            // decrement pellet
+        }// end if
+
+
+        break;
+
+        //================ down =====================
+        case goDown:
+
+        if(pellet[temp.get_y()][temp.get_x()-1]->getType() == PELLET ){
+            pellet[temp.get_y()][temp.get_x()-1]->die(pellet);
+            // decrement pellet
+        }// end if
+
+        break;
+
+        //================ left =====================
+        case goLeft:
+
+        if(pellet[temp.get_y()-1][temp.get_x()]->getType() == PELLET ){
+            pellet[temp.get_y()-1][temp.get_x()]->die(pellet);
+            // decrement pellet
+        }// end if
+        break;
+
+        default:
+
+            // direction is incorrect
+            //cout<<"*** eat pellet error ***"<<endl;
+            break;
+
+
+
+    }// end switch
 }
+

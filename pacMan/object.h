@@ -27,8 +27,9 @@ public:
     void set_hasMoved(bool hasMoved);
     void set_speed(int speed);
 
+
     //main functions
-    void virtual move(object* board[][X_DIMENSION],int direction);
+    void virtual move(object *board[][X_DIMENSION], object* pellets[][X_DIMENSION], directions direction);
     void virtual die(object* board[][X_DIMENSION]);
     bool virtual isNULL(object* board[][X_DIMENSION], coords checkHere);
     int getType();

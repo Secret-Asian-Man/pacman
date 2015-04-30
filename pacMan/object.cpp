@@ -1,6 +1,6 @@
 #include "object.h"
 #include <iostream>
-
+using namespace std;
 
 
 //might be possible to have the child give the parent a char[](cstring), so the parent can load the correct data.
@@ -29,6 +29,7 @@ coords object::get_position()
 
 char object::get_objectType()
 {
+
     return _objectType;
 }
 
@@ -49,7 +50,7 @@ int object::get_speed()
 
 sf::Sprite object::get_sprite()
 {
- return _sprite;
+    return _sprite;
 }
 
 sf::Texture object::get_texture()
@@ -82,91 +83,85 @@ void object::set_speed(int speed)
     _speed=speed;
 }
 
-void object::move(object* board[][X_DIMENSION], int direction)
+void object::move(object* board[][X_DIMENSION],object* pellets[][X_DIMENSION], directions direction)
 {
-//    coords temp(_position.get_x(),_position.get_y());
-
-//    // up = 0, right = 1, down = 2, left = 3
-//    switch(direction){
-
-
-//        //================ up =====================
-//        case '0':
-
-//            board[temp.get_x()][temp.get_y()+1] = board[_position.get_x()][_position.get_y()];
-//            if(isNULL(board, temp)){
-//                board[_position.get_x()][_position.get_y()] = NULL;
-//                _position.set_x(temp.get_x());
-//                _position.set_y(temp.get_y());
-
-//                //set has moved to true;
-//                _hasMoved = true;
-//            }// end if
-
-//        break;
+    //    std::cout<<"DEBUG object::move: "<<std::endl;
+    coords newPos(_position.get_x(),_position.get_y()); //starts at pacman's current position
+    // up = 0, right = 1, down = 2, left = 3
+    switch(direction){
 
 
-//        //================ right =====================
-//        case '1':
+    //================ up =====================
+    case goUp:
 
-//            board[temp.get_x()+1][temp.get_y()] = board[_position.get_x()][_position.get_y()];
-//            if(isNULL(board, temp)){
-//                board[_position.get_x()][_position.get_y()] = NULL;
-//                _position.set_x(temp.get_x());
-//                _position.set_y(temp.get_y());
-
-//                //set has moved to true;
-//                _hasMoved = true;
-//            }// end if
+        newPos.set_y(newPos.get_y()-1);
 
 
-//        break;
+        break;
 
-//        //================ down =====================
-//        case '2':
 
-//            board[temp.get_x()][temp.get_y()-1] = board_position[_position.get_y()];
-//           if(isNULL(board, temp)){
-//               board[_position.get_x()][_position.get_y()] = NULL;
-//               _position.set_x(temp.get_x());
-//               _position.set_y(temp.get_y());
+        //================ right =====================
+    case goRight:
+        cout<<"DEBUG goRight: "<<endl;
 
-//               //set has moved to true;
-//               _hasMoved = true;
-//           }// end if
+        cout<<"old position: ";_position.print_xy();
+        newPos.set_x(newPos.get_x()+1);
+        cout<<"new position: ";newPos.print_xy(); cout<<endl;
 
-//        break;
+        break;
 
-//        //================ left =====================
-//        case '3':
+        //================ down =====================
+    case goDown:
 
-//            board[temp.get_x()-1][temp.get_y()] = board[_position.get_x()][_position.get_y()];
-//            if(isNULL(board, temp)){
-//              board[_position.get_x()][_position.get_y()] = NULL;
-//              _position.set_x(temp.get_x());
-//              _position.set_y(temp.get_y());
+        newPos.set_y(newPos.get_y()+1);
 
-//              //set has moved to true;
-//              _hasMoved = true;
-//            }// end if
-//        break;
+        break;
 
-//        default:
+        //================ left =====================
+    case goLeft:
+        newPos.set_x(newPos.get_x()-1);
+        break;
 
-//            // direction is incorrect
-//            //cout<<"*** move error ***"<<endl;
-//            break;
+    default:
+
+        // direction is incorrect
+        //cout<<"*** move error ***"<<endl;
+        break;
 
 
 
-//    }// end switch
+    }// end switch
+
+    //std::cin.get();
+
+    if(isNULL(board, newPos)/*true*/){
+        board[newPos.get_y()][newPos.get_x()] = board[_position.get_y()][_position.get_x()];
+
+        board[_position.get_y()][_position.get_x()] = NULL;
+        _position.set_x(newPos.get_x());
+        _position.set_y(newPos.get_y());
+
+
+
+
+        //set has moved to true;
+        // _hasMoved = true;
+
+    }// end if
 
 }
 bool object::isNULL(object* board[][X_DIMENSION], coords checkHere){
     if(board[checkHere.get_y()][checkHere.get_x()] == NULL)
+    {
+        cout<<"DEBUG returning TRUE "<<endl;
+
         return true;
+    }
     else
+    {
+        cout<<"DEBUG returning FALSE "<<endl;
         return false;
+    }
 }// end check pos
 
 void object::die(object* board[][X_DIMENSION])

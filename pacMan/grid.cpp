@@ -67,17 +67,34 @@ void grid::set_directions(directions other)
 {
     _pacmanDirection=other;
 }
-
 void grid::step()
 {
     if (_gameState==normal)
     {
+        std::cout<<"direction: "<<_pacmanDirection<<std::endl;
+
         //before calling die function, check the oject's type. If the object is a pellet run decrement_pelletcount(),
         //else die normally.
         //call move pacMan's move function in here using _pacmanDirection
+
+        //check for pacman, if it is pacman then call checkPellet(board, direction).
+        for (int i=0;i<Y_DIMENSION;i++)
+        {
+            for (int j=0;j<X_DIMENSION;j++)
+            {
+                if (_board[i][j]!=NULL && _board[i][j]->get_hasmoved()==false)
+                {
+                    if(_board[i][j]->getType() == PACMAN){
+                        _board[i][j]->set_hasMoved(true);
+                        _board[i][j]->move(_board, _pellets, _pacmanDirection);
+                    }
+                }
+            }
+        }
+
+    show();
+        reset();
     }
-
-
 }
 
 
@@ -99,18 +116,33 @@ void grid::show()
         cout<<endl;
     }
 
+    //    for (int i=0;i<Y_DIMENSION;i++)
+    //    {
+    //        for (int j=0;j<X_DIMENSION;j++)
+    //        {
+    //            if (_pellets[i][j]!=NULL)
+    //            {
+    //                cout<<_pellets[i][j]->get_objectType();
+    //            }
+    //            else
+    //                cout<<".";
+    //        }
+    //        cout<<endl;
+    //    }
+}
+
+void grid::reset()
+{
     for (int i=0;i<Y_DIMENSION;i++)
     {
         for (int j=0;j<X_DIMENSION;j++)
         {
-            if (_pellets[i][j]!=NULL)
+            if (_board[i][j]!=NULL)
             {
-                cout<<_pellets[i][j]->get_objectType();
+                _board[i][j]->set_hasMoved(false);
             }
-            else
-                cout<<".";
+
         }
-        cout<<endl;
     }
 }
 
@@ -267,5 +299,8 @@ void grid::initializeToNull()
             _pellets[i][j]==NULL;
         }
     }
+
+
+
 }
 

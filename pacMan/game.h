@@ -25,7 +25,8 @@ private:
     //private variables
     RenderWindow _window;
     Event _event;
-
+    Clock _clock;
+    Time _time;
     //RectangleShape ; //gotta be a better way to draw the shapes
 
     //private functions

@@ -15,3 +15,8 @@ walls::~walls()
 
 }
 
+void walls::die(object *board[][X_DIMENSION])
+{
+
+}
+

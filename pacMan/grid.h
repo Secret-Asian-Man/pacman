@@ -11,14 +11,6 @@ enum gameState{//MAY MOVE THIS TO GAME.H
     win=3
 };
 
-enum directions{
-    none=-1,
-    goLeft=3,
-    goRight=1,
-    goUp=0,
-    goDown=2
-};
-
 class grid
 {
 public:
@@ -39,6 +31,7 @@ public:
     //main functions
     void step();
     void show();
+    void reset();
     void increment_pelletCount();
     void decrement_pelletCount();
 

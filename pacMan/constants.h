@@ -1,4 +1,3 @@
-
 #ifndef CONSTANTS
 #define CONSTANTS
 #include <SFML/Graphics.hpp>
@@ -34,11 +33,20 @@ const char NEXT_LINE=10; // return/enter key
 //G=ghost
 //R=Warp
 
+
+enum directions{
+    none=-1,
+    goLeft=3,
+    goRight=1,
+    goUp=0,
+    goDown=2
+};
+
 //SFML stuff
 const float WINDOW_WIDTH=X_DIMENSION*BOX_SIZE;
 const float WINDOW_HEIGHT=Y_DIMENSION*BOX_SIZE;
 const std::string GAME_TITLE="Pacman";
-
+const int RATE=1*1000;
 
 
 
