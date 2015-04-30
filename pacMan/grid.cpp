@@ -15,6 +15,7 @@ using namespace std;
 
 grid::grid()
 {
+    cout<<"22222222222222222"<<endl;
     _pelletCount=0;
     _gameState=normal;
     _pacmanDirection=none;

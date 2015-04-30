@@ -46,7 +46,8 @@ enum directions{
 const float WINDOW_WIDTH=X_DIMENSION*BOX_SIZE;
 const float WINDOW_HEIGHT=Y_DIMENSION*BOX_SIZE;
 const std::string GAME_TITLE="Pacman";
-const int RATE=1*1000;
+const double RATE=0.5*1000;
+const int FRAME_RATE=60;
 
 
 

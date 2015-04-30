@@ -1,6 +1,7 @@
 #include "pacman.h"
 #include "constants.h"
-
+#include <iostream>
+using namespace std;
 
 pacman::pacman(coords position):object(position,PACMAN)
 {
@@ -10,8 +11,8 @@ pacman::pacman(coords position):object(position,PACMAN)
     object::loadSprite();
 
 
-        _direction = -1;
-        _lives=LIVES;
+    _direction = -1;
+    _lives=LIVES;
 }
 
 pacman::~pacman()
@@ -34,9 +35,9 @@ void pacman::die(object *board[][X_DIMENSION])
 
 void pacman::move(object *board[][X_DIMENSION], object* pellets[][X_DIMENSION], directions choice)
 {
-//    std::cout<<"DEBUG pacman::move: "<<std::endl;
+    //    std::cout<<"DEBUG pacman::move: "<<std::endl;
 
-//    checkPellet(pellets, choice);
+    checkPellet(pellets, choice);
     object::move(board, pellets, choice);
 
 }
@@ -44,16 +45,17 @@ void pacman::move(object *board[][X_DIMENSION], object* pellets[][X_DIMENSION], 
 void pacman::checkPellet(object* pellet[][X_DIMENSION], directions choice)
 {
 
-   coords temp(object::get_position()); //pacman's position
+    coords temp(object::get_position()); //pacman's position
 
     // up = 0, right = 1, down = 2, left = 3
     switch(choice){
 
-        //================ up =====================
-        case goUp:
+    //================ up =====================
+    case goUp:
 
-        if(pellet[temp.get_y()][temp.get_x()+1]->getType() == PELLET ){
-            pellet[temp.get_y()][temp.get_x()+1]->die(pellet);
+        if (pellet[temp.get_y()-1][temp.get_x()]!=NULL)
+        {
+            pellet[temp.get_y()-1][temp.get_x()]->die(pellet);
             // decrement pellet
         }// end if
 
@@ -61,40 +63,52 @@ void pacman::checkPellet(object* pellet[][X_DIMENSION], directions choice)
 
 
         //================ right =====================
-        case goRight:
+    case goRight:
+        //        temp.print_xy();cout<<endl;
+        //        cout<<temp.get_x()+1<<","<<temp.get_y()<<endl;
+        //        cout << "Checking Type" << endl;
+        //        cout << "Type @ Temp.getY,Temp.getX+1: ";
+        //        if(pellet[temp.get_y()][temp.get_x()+1]) cout << pellet[temp.get_y()][temp.get_x()+1]->getType() << endl;
+        //        else cout << "EMPTY" << endl;
+        ////        cout<<"DEBUG type: "<<pellet[temp.get_y()][temp.get_x()+1]->getType()<<endl;
 
-        if(pellet[temp.get_y()+1][temp.get_x()]->getType() == PELLET ){
-            pellet[temp.get_y()+1][temp.get_x()]->die(pellet);
+        if (pellet[temp.get_y()][temp.get_x()+1]!=NULL )
+        {
+            pellet[temp.get_y()][temp.get_x()+1]->die(pellet);
             // decrement pellet
         }// end if
+
 
 
         break;
 
         //================ down =====================
-        case goDown:
+    case goDown:
 
-        if(pellet[temp.get_y()][temp.get_x()-1]->getType() == PELLET ){
-            pellet[temp.get_y()][temp.get_x()-1]->die(pellet);
+        if (pellet[temp.get_y()+1][temp.get_x()]!=NULL)
+        {
+            pellet[temp.get_y()+1][temp.get_x()]->die(pellet);
             // decrement pellet
         }// end if
 
         break;
 
         //================ left =====================
-        case goLeft:
+    case goLeft:
+        if (pellet[temp.get_y()][temp.get_x()-1]!=NULL)
+        {
+                pellet[temp.get_y()][temp.get_x()-1]->die(pellet);
 
-        if(pellet[temp.get_y()-1][temp.get_x()]->getType() == PELLET ){
-            pellet[temp.get_y()-1][temp.get_x()]->die(pellet);
-            // decrement pellet
+                // decrement pellet
+
         }// end if
         break;
 
-        default:
+    default:
 
-            // direction is incorrect
-            //cout<<"*** eat pellet error ***"<<endl;
-            break;
+        // direction is incorrect
+        //cout<<"*** eat pellet error ***"<<endl;
+        break;
 
 
 

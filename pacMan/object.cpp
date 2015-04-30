@@ -135,6 +135,7 @@ void object::move(object* board[][X_DIMENSION],object* pellets[][X_DIMENSION], d
     //std::cin.get();
 
     if(isNULL(board, newPos)/*true*/){
+        cout<<"DEBUG @@@@@@@@@@@@22: "<<endl;
         board[newPos.get_y()][newPos.get_x()] = board[_position.get_y()][_position.get_x()];
 
         board[_position.get_y()][_position.get_x()] = NULL;

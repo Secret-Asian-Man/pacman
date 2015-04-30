@@ -32,7 +32,7 @@ private:
     //private functions
     void setWindow(); //initializes the window
     void gameStart(); //the actual game loop (High level)
-    void initialMove();
+    void updateLocation();
     void keyEvents(); //takes user inputs to do actions
     void draw(); //draws figures to the screen
     void display(); //displays the screen

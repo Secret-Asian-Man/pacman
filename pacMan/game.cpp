@@ -4,9 +4,13 @@
 
 game::game()
 {
+
+    _window.setFramerateLimit(FRAME_RATE);
     _time=Time::Zero;
 
     setWindow();
+
+    cout<<"11111111111111111111111111"<<endl;
     gameStart();
 
 }
@@ -23,7 +27,7 @@ void game::setWindow()
 
 void game::gameStart()
 {
-    initialMove();
+    //initialMove();
 
 
 
@@ -38,17 +42,18 @@ void game::gameStart()
         if (_time.asMilliseconds()>=RATE-_time.asMilliseconds())
         {
             _gameBoard.step(); //the brains
-            _clock.restart();
+            updateLocation();
 
             draw();
             display();
 
+            _clock.restart();
         }
 
     }
 }
 
-void game::initialMove()
+void game::updateLocation()
 {
     for (int i=0;i<Y_DIMENSION;i++)
     {
@@ -67,7 +72,7 @@ void game::initialMove()
                 //the line below needs to be in a diff functions to initialize, no looping allowed@@@@
                 // _gameBoard._board[i][j]->get_position().print_xy();
                 _gameBoard._pellets[i][j]->_sprite.setPosition(_gameBoard._pellets[i][j]->get_position().get_x()*BOX_SIZE,
-                                                             _gameBoard._pellets[i][j]->get_position().get_y()*BOX_SIZE);
+                                                               _gameBoard._pellets[i][j]->get_position().get_y()*BOX_SIZE);
             }
         }
     }
@@ -132,7 +137,6 @@ void game::draw()
         {
             if (_gameBoard._board[i][j]!=NULL)
             {
-
                 _window.draw(_gameBoard._board[i][j]->_sprite);
             }
             if (_gameBoard._pellets[i][j]!=NULL)
