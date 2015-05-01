@@ -92,7 +92,9 @@ void grid::step()
             }
         }
 
-    //show();
+        //show();
+        _pelletCount=count_pellets();
+        cout<<"DEBUG _pelletCount: "<<_pelletCount<<endl;
         reset();
     }
 }
@@ -152,6 +154,27 @@ void grid::increment_pelletCount()
 void grid::decrement_pelletCount()
 {
     _pelletCount--;
+}
+
+int grid::count_pellets()
+{
+    int count=0;
+
+    for (int i=0;i<Y_DIMENSION;i++)
+    {
+        for (int j=0;j<X_DIMENSION;j++)
+        {
+            if (_pellets[i][j]!=NULL)
+            {
+                if (_pellets[i][j]->getType()==PELLET || _pellets[i][j]->getType()==POWER_PELLET)
+                {
+                    count++;
+                }
+            }
+        }
+    }
+
+    return count;
 }
 
 void grid::loadFile()

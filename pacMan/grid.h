@@ -34,6 +34,7 @@ public:
     void reset();
     void increment_pelletCount();
     void decrement_pelletCount();
+    int count_pellets();
 
     //public variables
     object* _board[Y_DIMENSION][X_DIMENSION]; //grid of creatures pointers
