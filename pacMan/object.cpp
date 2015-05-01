@@ -83,9 +83,26 @@ void object::set_speed(int speed)
     _speed=speed;
 }
 
+
+void object::move(object* board[][X_DIMENSION],object* pellets[][X_DIMENSION], coords newDirect){
+
+    board[newDirect.get_y()][newDirect.get_x()] = board[_position.get_y()][_position.get_x()];
+
+    if(isNULL(board, newDirect)){
+
+        board[_position.get_y()][_position.get_x()] = NULL;
+        _position.set_x(newDirect.get_x());
+        _position.set_y(newDirect.get_y());
+
+
+
+
+        //set has moved to true;
+         _hasMoved = true;
+    }// end if
+}
 void object::move(object* board[][X_DIMENSION],object* pellets[][X_DIMENSION], directions direction)
 {
-    //    std::cout<<"DEBUG object::move: "<<std::endl;
     coords newPos(_position.get_x(),_position.get_y()); //starts at pacman's current position
     // up = 0, right = 1, down = 2, left = 3
     switch(direction){
@@ -102,11 +119,8 @@ void object::move(object* board[][X_DIMENSION],object* pellets[][X_DIMENSION], d
 
         //================ right =====================
     case goRight:
-        cout<<"DEBUG goRight: "<<endl;
 
-        cout<<"old position: ";_position.print_xy();
         newPos.set_x(newPos.get_x()+1);
-        cout<<"new position: ";newPos.print_xy(); cout<<endl;
 
         break;
 
@@ -124,29 +138,19 @@ void object::move(object* board[][X_DIMENSION],object* pellets[][X_DIMENSION], d
 
     default:
 
-        // direction is incorrect
-        //cout<<"*** move error ***"<<endl;
         break;
 
 
 
     }// end switch
 
-    //std::cin.get();
 
-    if(isNULL(board, newPos)/*true*/){
-        cout<<"DEBUG @@@@@@@@@@@@22: "<<endl;
+    if(isNULL(board, newPos)){
         board[newPos.get_y()][newPos.get_x()] = board[_position.get_y()][_position.get_x()];
 
         board[_position.get_y()][_position.get_x()] = NULL;
         _position.set_x(newPos.get_x());
         _position.set_y(newPos.get_y());
-
-
-
-
-        //set has moved to true;
-        // _hasMoved = true;
 
     }// end if
 
@@ -154,13 +158,11 @@ void object::move(object* board[][X_DIMENSION],object* pellets[][X_DIMENSION], d
 bool object::isNULL(object* board[][X_DIMENSION], coords checkHere){
     if(board[checkHere.get_y()][checkHere.get_x()] == NULL)
     {
-        cout<<"DEBUG returning TRUE "<<endl;
 
         return true;
     }
     else
     {
-        cout<<"DEBUG returning FALSE "<<endl;
         return false;
     }
 }// end check pos
@@ -186,5 +188,6 @@ void object::loadTexture(char* fileName)
 void object::loadSprite()
 {
     _sprite.setTexture(_texture);
+    _sprite.setOrigin(BOX_SIZE/2,BOX_SIZE/2);
 
 }

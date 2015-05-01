@@ -35,10 +35,31 @@ void pacman::die(object *board[][X_DIMENSION])
 
 void pacman::move(object *board[][X_DIMENSION], object* pellets[][X_DIMENSION], directions choice)
 {
-    //    std::cout<<"DEBUG pacman::move: "<<std::endl;
-
     checkPellet(pellets, choice);
     object::move(board, pellets, choice);
+
+    switch (choice)
+    {
+    case goUp:
+    _sprite.setRotation(-90);
+        break;
+
+    case goDown:
+        _sprite.setRotation(90);
+        break;
+
+    case goLeft:
+        _sprite.setRotation(180);
+        break;
+
+    case goRight:
+        _sprite.setRotation(0);
+        break;
+
+    default:
+        cout<<"Invalid key..."<<endl;
+        break;
+    }
 
 }
 
@@ -64,13 +85,6 @@ void pacman::checkPellet(object* pellet[][X_DIMENSION], directions choice)
 
         //================ right =====================
     case goRight:
-        //        temp.print_xy();cout<<endl;
-        //        cout<<temp.get_x()+1<<","<<temp.get_y()<<endl;
-        //        cout << "Checking Type" << endl;
-        //        cout << "Type @ Temp.getY,Temp.getX+1: ";
-        //        if(pellet[temp.get_y()][temp.get_x()+1]) cout << pellet[temp.get_y()][temp.get_x()+1]->getType() << endl;
-        //        else cout << "EMPTY" << endl;
-        ////        cout<<"DEBUG type: "<<pellet[temp.get_y()][temp.get_x()+1]->getType()<<endl;
 
         if (pellet[temp.get_y()][temp.get_x()+1]!=NULL )
         {

@@ -10,7 +10,6 @@ game::game()
 
     setWindow();
 
-    cout<<"11111111111111111111111111"<<endl;
     gameStart();
 
 }
@@ -27,29 +26,28 @@ void game::setWindow()
 
 void game::gameStart()
 {
-    //initialMove();
-
-
-
     while (_window.isOpen()) //and game is not paused do these. The keyEvents() is what changes the movement input, and then afterwards is it simply displayed in sfml
     {
-        while(_window.pollEvent(_event))
-        {
-            keyEvents();
-        }
+
 
         _time=_clock.getElapsedTime();
         if (_time.asMilliseconds()>=RATE-_time.asMilliseconds())
         {
+            while(_window.pollEvent(_event))
+            {
+                keyEvents();
+            }
+
             _gameBoard.step(); //the brains
             updateLocation();
 
             draw();
             display();
 
+
+
             _clock.restart();
         }
-
     }
 }
 
@@ -61,18 +59,17 @@ void game::updateLocation()
         {
             if (_gameBoard._board[i][j]!=NULL)
             {
-                //the line below needs to be in a diff functions to initialize, no looping allowed@@@@
-                // _gameBoard._board[i][j]->get_position().print_xy();
                 _gameBoard._board[i][j]->_sprite.setPosition(_gameBoard._board[i][j]->get_position().get_x()*BOX_SIZE,
                                                              _gameBoard._board[i][j]->get_position().get_y()*BOX_SIZE);
+
             }
 
             if (_gameBoard._pellets[i][j]!=NULL)
             {
-                //the line below needs to be in a diff functions to initialize, no looping allowed@@@@
-                // _gameBoard._board[i][j]->get_position().print_xy();
                 _gameBoard._pellets[i][j]->_sprite.setPosition(_gameBoard._pellets[i][j]->get_position().get_x()*BOX_SIZE,
                                                                _gameBoard._pellets[i][j]->get_position().get_y()*BOX_SIZE);
+
+
             }
         }
     }
@@ -85,37 +82,37 @@ void game::keyEvents()
         if (_event.type==Event::Closed) //if X button is pressed close the window
         {
             _window.close();
-            cout<<"close button click"<<endl;
+            //cout<<"close button click"<<endl;
         }
 
         switch (_event.key.code) //takes in user inputs and performs actions
         {
         case Keyboard::Escape:
-            cout<<"esc button pressed"<<endl;
+            //cout<<"esc button pressed"<<endl;
             _window.close();
             break;
 
         case Keyboard::A:
         case Keyboard::Left:
-            cout<<"Left button pressed"<<endl;
+           // cout<<"Left button pressed"<<endl;
             _gameBoard.set_directions(goLeft); //send int 3
             break;
 
         case Keyboard::D:
         case Keyboard::Right:
-            cout<<"Right button pressed"<<endl;
+            //cout<<"Right button pressed"<<endl;
             _gameBoard.set_directions(goRight); //send int 1
             break;
 
         case Keyboard::W:
         case Keyboard::Up:
-            cout<<"Up button pressed"<<endl;
+           // cout<<"Up button pressed"<<endl;
             _gameBoard.set_directions(goUp); //sends int 0
             break;
 
         case Keyboard::S:
         case Keyboard::Down:
-            cout<<"Down button pressed"<<endl;
+           // cout<<"Down button pressed"<<endl;
             _gameBoard.set_directions(goDown); //sends int 2
             break;
 

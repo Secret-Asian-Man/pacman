@@ -15,7 +15,6 @@ using namespace std;
 
 grid::grid()
 {
-    cout<<"22222222222222222"<<endl;
     _pelletCount=0;
     _gameState=normal;
     _pacmanDirection=none;
@@ -72,7 +71,7 @@ void grid::step()
 {
     if (_gameState==normal)
     {
-        std::cout<<"direction: "<<_pacmanDirection<<std::endl;
+        //std::cout<<"direction: "<<_pacmanDirection<<std::endl;
 
         //before calling die function, check the oject's type. If the object is a pellet run decrement_pelletcount(),
         //else die normally.
@@ -93,7 +92,7 @@ void grid::step()
             }
         }
 
-    show();
+    //show();
         reset();
     }
 }
@@ -101,8 +100,6 @@ void grid::step()
 
 void grid::show()
 {
-    cout<<"DEBUG grid::show() FIRED!!!: "<<endl;
-
     for (int i=0;i<Y_DIMENSION;i++)
     {
         for (int j=0;j<X_DIMENSION;j++)

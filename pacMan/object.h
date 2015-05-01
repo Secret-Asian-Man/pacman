@@ -30,6 +30,7 @@ public:
 
     //main functions
     void virtual move(object *board[][X_DIMENSION], object* pellets[][X_DIMENSION], directions direction);
+    void virtual move(object* board[][X_DIMENSION],object* pellets[][X_DIMENSION], coords newDirect);
     void virtual die(object* board[][X_DIMENSION]);
     bool virtual isNULL(object* board[][X_DIMENSION], coords checkHere);
     int getType();
@@ -37,6 +38,7 @@ public:
     //public variables
     sf::Texture _texture;
     sf::Sprite _sprite;
+    coords _position;
 
 
     //tool functions
@@ -45,7 +47,6 @@ protected:
     void loadSprite();
 
 private:
-    coords _position;
     char _objectType;
     int _age;
     bool _hasMoved;

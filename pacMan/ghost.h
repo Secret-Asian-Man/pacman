@@ -1,6 +1,9 @@
 #ifndef GHOST_H
 #define GHOST_H
 #include "object.h"
+#include <vector>
+using namespace std;
+
 enum ghostEmotionalState{
     invalid=-1,
     chase=0,
@@ -19,6 +22,15 @@ public:
 
     //mutators
     void set_emotionalState(ghostEmotionalState other);
+
+    //main functions
+    void move(object *board[][X_DIMENSION],object *pellets[][X_DIMENSION], directions direction);
+    coords Intersection(object* board[][X_DIMENSION], directions direction);
+    coords choseDirection(vector<coords> exits, int vectorSize);
+    double findDistance(coords positions);
+    void checkPacMan(object* board[][X_DIMENSION], coords newDirect);
+    void checkPacMan(object* board[][X_DIMENSION], directions direction);
+    bool atIntersection(object* board[][X_DIMENSION], directions direction);
 
 private:
     char _ghostType;

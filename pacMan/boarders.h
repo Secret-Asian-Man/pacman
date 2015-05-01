@@ -9,6 +9,7 @@ public:
     boarders(coords position);
     ~boarders();
 
+
     char* _fileName;
 };
 
