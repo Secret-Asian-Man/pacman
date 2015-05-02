@@ -18,6 +18,7 @@ grid::grid()
     _pelletCount=0;
     _gameState=normal;
     _pacmanDirection=none;
+
     initializeToNull();
     loadMap();
 
@@ -84,10 +85,8 @@ void grid::step()
             {
                 if (_board[i][j]!=NULL && _board[i][j]->get_hasmoved()==false)
                 {
-                    if(_board[i][j]->getType() == PACMAN){
-                        _board[i][j]->set_hasMoved(true);
-                        _board[i][j]->move(_board, _pellets, _pacmanDirection);
-                    }
+                    _board[i][j]->set_hasMoved(true);
+                    _board[i][j]->move(_board, _pellets, _pacmanDirection);
                 }
             }
         }
@@ -95,7 +94,27 @@ void grid::step()
         //show();
         _pelletCount=count_pellets();
         cout<<"DEBUG _pelletCount: "<<_pelletCount<<endl;
+        if (_pelletCount<=0)
+        {
+            _gameState=win;
+        }
+
+
         reset();
+    }
+    if (_gameState==paused)
+    {
+        cout<<"PAUSED"<<endl;
+    }
+
+    if (_gameState==gameOver)
+    {
+        cout<<"GAMEOVER"<<endl;
+    }
+
+    if (_gameState==win)
+    {
+        cout<<"WINNER!!"<<endl;
     }
 }
 
@@ -214,6 +233,7 @@ void grid::loadMap()
         switch (singleChar)
         {
         case PACMAN:
+
             _board[y][x]=new pacman(coords(x,y));
             x++;
             break;

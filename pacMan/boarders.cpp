@@ -16,5 +16,10 @@ boarders::~boarders()
 
 }
 
+void boarders::move(object *board[][X_DIMENSION], object *pellets[][X_DIMENSION], directions choice)
+{
+
+}
+
 
 

@@ -9,6 +9,7 @@ public:
     boarders(coords position);
     ~boarders();
 
+    void move(object *board[][X_DIMENSION], object* pellets[][X_DIMENSION], directions choice);
 
     char* _fileName;
 };

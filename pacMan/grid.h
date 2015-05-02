@@ -4,12 +4,7 @@
 #include "constants.h"
 #include <fstream>
 #include <iostream>
-enum gameState{//MAY MOVE THIS TO GAME.H
-    normal=0,
-    paused=1,
-    gameOver=2,
-    win=3
-};
+
 
 class grid
 {

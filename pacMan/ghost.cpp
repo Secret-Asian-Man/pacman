@@ -1,9 +1,12 @@
 #include "ghost.h"
 #include "constants.h"
-ghost::ghost(coords position,char ghostType):object(position,GHOST)
+#include <cmath>
+
+ghost::ghost(coords position, char ghostType):object(position,GHOST)
 {
     _ghostType=ghostType;
     _emotionalState=chase;
+    _ghostDirection=goDown;
 }
 
 ghost::~ghost()
@@ -26,22 +29,28 @@ void ghost::set_emotionalState(ghostEmotionalState other)
     _emotionalState=other;
 }
 
-void ghost::move(object *board[][X_DIMENSION],object* pellets[][X_DIMENSION], directions direction)
+void ghost::move(object *board[][X_DIMENSION],object* pellets[][X_DIMENSION], directions direction) //[direction] is not used
 {
-    //pacmancheck(); // make pacman die
-    coords newDirect;
-    if(atIntersection(board,direction)){
-        newDirect = Intersection(board,direction);
-        checkPacMan(board, newDirect);
-        object::move(board, pellets, newDirect);
-    }// end if
-    else
-        object::move( board, pellets, direction);
-    checkPacMan(board, newDirect);
+//    //==============================
+//    coords newDirect;
+//    if(atIntersection(board))
+//    {
+//        newDirect = Intersection(board,_ghostDirection);
+//        //checkPacMan(board, newDirect);
+//        object::move(board, pellets, newDirect);
+//    }// end if
+//    else
+//    {
+//        //checkPacMan(board, _ghostDirection);
+//        object::move( board, pellets, _ghostDirection);
+//    }
 
+//    //======================
+
+//    object::increment_age();
 }
 
-coords ghost::Intersection(object *board[][X_DIMENSION], directions direction)
+coords ghost::Intersection(object *board[][X_DIMENSION], directions ghostDirection)
 {
     // checks surrounding positions for more than 1 exit.
     // cannot be opposite direction that it is going
@@ -49,112 +58,228 @@ coords ghost::Intersection(object *board[][X_DIMENSION], directions direction)
 
     // should be able to call RIGHT==NULL || RIGHT=PACMAN
 
-    int exitCount = 0;
 
     // will check all positions except the opposite of the direction it is going
     // ex: if going left, right is not a move option
 
     // UP = 0; RIGHT = 1; DOWN = 2, LEFT = 3
 
-    switch(direction)
+    switch(ghostDirection)
     {
-    case goUp:
+        case goUp:
         // UP
-        if(board[_position.get_y()+1][_position.get_x()]==NULL || board[_position.get_y()+1][_position.get_x()]->getType()==PACMAN)
-            exits.push_back(board[_position.get_y()+1][_position.get_x()]->get_position());
+        if(board[_position.get_y()-1][_position.get_x()]==NULL || board[_position.get_y()-1][_position.get_x()]->getType()==PACMAN)
+            exits.push_back(coords (_position.get_x(),_position.get_y()-1));
         // RIGHT
-        if(board[_position.get_y()][_position.get_x()+1]==NULL || board[_position.get_y()+1][_position.get_x()]->getType()==PACMAN)
-            exits.push_back(board[_position.get_y()][_position.get_x()+1]->get_position());
+        if(board[_position.get_y()][_position.get_x()+1]==NULL || board[_position.get_y()][_position.get_x()+1]->getType()==PACMAN)
+            exits.push_back(coords (_position.get_x()+1,_position.get_y()));
         // LEFT
-        if(board[_position.get_y()][_position.get_x()-1]==NULL || board[_position.get_y()+1][_position.get_x()]->getType()==PACMAN)
-            exits.push_back(board[_position.get_y()][_position.get_x()-1]->get_position());
+        if(board[_position.get_y()][_position.get_x()-1]==NULL || board[_position.get_y()][_position.get_x()-1]->getType()==PACMAN)
+            exits.push_back(coords (_position.get_x()-1,_position.get_y()));
+            break;
 
-        break;
-
-    case goRight:
+        case goRight:
         // UP
+        if(board[_position.get_y()-1][_position.get_x()]==NULL || board[_position.get_y()-1][_position.get_x()]->getType()==PACMAN)
+            exits.push_back(coords (_position.get_x(),_position.get_y()-1));
+        // RIGHT
+        if(board[_position.get_y()][_position.get_x()+1]==NULL || board[_position.get_y()][_position.get_x()+1]->getType()==PACMAN)
+            exits.push_back(coords (_position.get_x()+1,_position.get_y()));
+        // DOWN
         if(board[_position.get_y()+1][_position.get_x()]==NULL || board[_position.get_y()+1][_position.get_x()]->getType()==PACMAN)
-            exits.push_back(board[_position.get_y()+1][_position.get_x()]->get_position());
-        // RIGHT
-        if(board[_position.get_y()][_position.get_x()+1]==NULL || board[_position.get_y()+1][_position.get_x()]->getType()==PACMAN)
-            exits.push_back(board[_position.get_y()][_position.get_x()+1]->get_position());
-        // DOWN
-        if(board[_position.get_y()-1][_position.get_x()]==NULL || board[_position.get_y()+1][_position.get_x()]->getType()==PACMAN)
-            exits.push_back(board[_position.get_y()-1][_position.get_x()]->get_position());
-        break;
-
-    case goDown:
-        // RIGHT
-        if(board[_position.get_y()][_position.get_x()+1]==NULL || board[_position.get_y()+1][_position.get_x()]->getType()==PACMAN)
-            exits.push_back(board[_position.get_y()][_position.get_x()+1]->get_position());
-        // DOWN
-        if(board[_position.get_y()-1][_position.get_x()]==NULL || board[_position.get_y()+1][_position.get_x()]->getType()==PACMAN)
-            exits.push_back(board[_position.get_y()-1][_position.get_x()]->get_position());
-        // LEFT
-        if(board[_position.get_y()][_position.get_x()-1]==NULL || board[_position.get_y()+1][_position.get_x()]->getType()==PACMAN)
-            exits.push_back(board[_position.get_y()][_position.get_x()-1]->get_position());
+            exits.push_back(coords (_position.get_x(),_position.get_y()+1));
         break;
 
     case goLeft:
-        // UP
-        if(board[_position.get_y()+1][_position.get_x()]==NULL || board[_position.get_y()+1][_position.get_x()]->getType()==PACMAN)
-            exits.push_back(board[_position.get_y()+1][_position.get_x()]->get_position());
-        // DOWN
-        if(board[_position.get_y()-1][_position.get_x()]==NULL || board[_position.get_y()+1][_position.get_x()]->getType()==PACMAN)
-            exits.push_back(board[_position.get_y()-1][_position.get_x()]->get_position());
-        // LEFT
-        if(board[_position.get_y()][_position.get_x()-1]==NULL || board[_position.get_y()+1][_position.get_x()]->getType()==PACMAN)
-            exits.push_back(board[_position.get_y()][_position.get_x()-1]->get_position());
-        break;
+    // UP
+    if(board[_position.get_y()-1][_position.get_x()]==NULL || board[_position.get_y()-1][_position.get_x()]->getType()==PACMAN)
+        exits.push_back(coords (_position.get_x(),_position.get_y()-1));
+    // DOWN
+    if(board[_position.get_y()+1][_position.get_x()]==NULL || board[_position.get_y()+1][_position.get_x()]->getType()==PACMAN)
+        exits.push_back(coords (_position.get_x(),_position.get_y()+1));
+    // LEFT
+    if(board[_position.get_y()][_position.get_x()-1]==NULL || board[_position.get_y()][_position.get_x()-1]->getType()==PACMAN)
+        exits.push_back(coords (_position.get_x()-1,_position.get_y()));
+            break;
 
+    case goDown:
+        // RIGHT
+        if(board[_position.get_y()][_position.get_x()+1]==NULL || board[_position.get_y()][_position.get_x()+1]->getType()==PACMAN)
+            exits.push_back(coords (_position.get_x()+1,_position.get_y()));
+        // DOWN
+        if(board[_position.get_y()+1][_position.get_x()]==NULL || board[_position.get_y()+1][_position.get_x()]->getType()==PACMAN)
+            exits.push_back(coords (_position.get_x(),_position.get_y()+1));
+        // LEFT
+        if(board[_position.get_y()][_position.get_x()-1]==NULL || board[_position.get_y()][_position.get_x()-1]->getType()==PACMAN)
+            exits.push_back(coords (_position.get_x()-1,_position.get_y()));
+        break;
     }// end switch
 
+    if (exits.size()==0)
+    {
+    return _position;
+    }
 
-        coords newCoord = choseDirection(exits, exits.size());
-        return newCoord;
+    coords newCoord = choseDirection(exits, exits.size());
+//    coords newCoord = _position;
 
-
-
+     _ghostDirection=findDirection(newCoord);
+cout<<"DEBUG oldCoord: ";_position.print_xy();cout<<endl;cout<<endl;
+cout<<"DEBUG newCoord: ";newCoord.print_xy();cout<<endl;cout<<endl;
+    return newCoord;
 }
+
 
 coords ghost::choseDirection(vector<coords> exits, int vectorSize)
 {
+    double shortestDistance;
+    coords nearestCoords;
+
+    coords hold = exits.front();
+    exits.pop_back();
+    vectorSize--;
+    shortestDistance = findDistance(hold);
+    nearestCoords = hold;
+    // get a set of coords from vector
+    while(vectorSize > 0){
+
+        // check front  - get the coords
+        coords hold = exits.front();
+
+        // pop that set of coords
+        exits.pop_back();
+
+        // decrease vector size
+        vectorSize--;
+
+        double compare = findDistance(hold);
+
+
+        if(compare < shortestDistance){
+            shortestDistance = compare;
+            nearestCoords = hold;
+        }
+
+
+    }// end while
+
+    return nearestCoords;
+
 
 }
 
 double ghost::findDistance(coords positions)
 {
 
+    double distance;
+    return distance = sqrt(pow(positions.get_x() - _pacptr->get_position().get_x(),2) + pow(positions.get_y() - _pacptr->get_position().get_y(),2));
+
+
 }
 
 void ghost::checkPacMan(object *board[][X_DIMENSION], coords newDirect)
 {
+    if(board[newDirect.get_y()][newDirect.get_x()]->getType() == PACMAN )
+    {
+        board[newDirect.get_y()][newDirect.get_x()]->die(board);
+    }
 
 }
 
 void ghost::checkPacMan(object *board[][X_DIMENSION], directions direction)
 {
 
+    // up = 0, right = 1, down = 2, left = 3
+    switch(direction){
+
+    //================ up =====================
+    case goUp:
+
+        if(board[_position.get_y()-1][_position.get_x()]->getType() == PACMAN ){
+            board[_position.get_y()-1][_position.get_x()]->die(board);
+            // decrement pellet
+        }// end if
+
+        break;
+
+
+        //================ right =====================
+    case goRight:
+
+        if(board[_position.get_y()][_position.get_x()+1]->getType() == PACMAN ){
+            board[_position.get_y()][_position.get_x()+1]->die(board);
+            // decrement pellet
+        }// end if
+
+
+        break;
+
+        //================ down =====================
+    case goDown:
+
+        if(board[_position.get_y()][_position.get_x()-1]->getType() == PACMAN ){
+            board[_position.get_y()][_position.get_x()-1]->die(board);
+            // decrement pellet
+        }// end if
+
+        break;
+
+        //================ left =====================
+    case goLeft:
+
+        if(board[_position.get_y()][_position.get_x()-1]->getType() == PACMAN ){
+            board[_position.get_y()][_position.get_x()-1]->die(board);
+            // decrement pellet
+        }// end if
+        break;
+
+    default:
+
+        // direction is incorrect
+        //cout<<"*** eat pellet error ***"<<endl;
+        break;
+
+
+
+    }// end switch
+
 }
 
-bool ghost::atIntersection(object* board[][X_DIMENSION], directions direction){
+bool ghost::atIntersection(object* board[][X_DIMENSION])
+{
 
     int exits = 0;
     // UP
-    if(board[_position.get_y()+1][_position.get_x()]==NULL || board[_position.get_y()+1][_position.get_x()]->getType()==PACMAN)
+    if(board[_position.get_y()-1][_position.get_x()]==NULL || board[_position.get_y()-1][_position.get_x()]->getType()==PACMAN)
         exits++;
     // RIGHT
-    if(board[_position.get_y()][_position.get_x()+1]==NULL || board[_position.get_y()+1][_position.get_x()]->getType()==PACMAN)
+    if(board[_position.get_y()][_position.get_x()+1]==NULL || board[_position.get_y()][_position.get_x()+1]->getType()==PACMAN)
         exits++;
     // DOWN
-    if(board[_position.get_y()-1][_position.get_x()]==NULL || board[_position.get_y()+1][_position.get_x()]->getType()==PACMAN)
+    if(board[_position.get_y()+1][_position.get_x()]==NULL || board[_position.get_y()+1][_position.get_x()]->getType()==PACMAN)
         exits++;
     // LEFT
-    if(board[_position.get_y()][_position.get_x()-1]==NULL || board[_position.get_y()+1][_position.get_x()]->getType()==PACMAN)
+    if(board[_position.get_y()][_position.get_x()-1]==NULL || board[_position.get_y()][_position.get_x()-1]->getType()==PACMAN)
         exits++;
+
     if(exits > 2)
         return true;
     else
         return false;
+}
 
-}// end atIntersection
+directions ghost::findDirection(coords newCoords)
+{
+    if(newCoords.get_x() > _position.get_x()){
+        return goRight;
+    }
+    if(newCoords.get_x() < _position.get_x()){
+        return goLeft;
+    }
+    if(newCoords.get_y() > _position.get_y()){
+        return goDown;
+    }
+    if(newCoords.get_y() < _position.get_y()){
+        return goUp;
+    }
+}

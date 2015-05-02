@@ -1,3 +1,7 @@
+//DAVID
+
+
+
 #include "pacman.h"
 #include "constants.h"
 #include <iostream>
@@ -11,7 +15,6 @@ pacman::pacman(coords position):object(position,PACMAN)
     object::loadSprite();
 
 
-    _direction = -1;
     _lives=LIVES;
 }
 
@@ -41,7 +44,7 @@ void pacman::move(object *board[][X_DIMENSION], object* pellets[][X_DIMENSION], 
     switch (choice)
     {
     case goUp:
-    _sprite.setRotation(-90);
+        _sprite.setRotation(-90);
         break;
 
     case goDown:
@@ -60,6 +63,7 @@ void pacman::move(object *board[][X_DIMENSION], object* pellets[][X_DIMENSION], 
         break;
     }
 
+    object::increment_age();
 }
 
 void pacman::checkPellet(object* pellet[][X_DIMENSION], directions choice)
@@ -103,7 +107,7 @@ void pacman::checkPellet(object* pellet[][X_DIMENSION], directions choice)
     case goLeft:
         if (pellet[temp.get_y()][temp.get_x()-1]!=NULL)
         {
-                pellet[temp.get_y()][temp.get_x()-1]->die(pellet);
+            pellet[temp.get_y()][temp.get_x()-1]->die(pellet);
         }// end if
         break;
 

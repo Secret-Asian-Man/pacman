@@ -86,64 +86,49 @@ void object::set_speed(int speed)
 
 void object::move(object* board[][X_DIMENSION],object* pellets[][X_DIMENSION], coords newDirect){
 
-    board[newDirect.get_y()][newDirect.get_x()] = board[_position.get_y()][_position.get_x()];
-
+cout<<"DEBUG newDirect: ";newDirect.print_xy();cout<<endl;
     if(isNULL(board, newDirect)){
+        board[newDirect.get_y()][newDirect.get_x()] = board[_position.get_y()][_position.get_x()];
 
         board[_position.get_y()][_position.get_x()] = NULL;
         _position.set_x(newDirect.get_x());
         _position.set_y(newDirect.get_y());
 
-
-
-
         //set has moved to true;
-         _hasMoved = true;
     }// end if
+    else
+    {
+
+    }
+
+
 }
 void object::move(object* board[][X_DIMENSION],object* pellets[][X_DIMENSION], directions direction)
 {
+
     coords newPos(_position.get_x(),_position.get_y()); //starts at pacman's current position
     // up = 0, right = 1, down = 2, left = 3
     switch(direction){
 
-
-    //================ up =====================
     case goUp:
-
         newPos.set_y(newPos.get_y()-1);
-
-
         break;
 
-
-        //================ right =====================
     case goRight:
-
         newPos.set_x(newPos.get_x()+1);
-
         break;
 
-        //================ down =====================
     case goDown:
-
         newPos.set_y(newPos.get_y()+1);
-
         break;
 
-        //================ left =====================
     case goLeft:
         newPos.set_x(newPos.get_x()-1);
         break;
 
     default:
-
         break;
-
-
-
     }// end switch
-
 
     if(isNULL(board, newPos)){
         board[newPos.get_y()][newPos.get_x()] = board[_position.get_y()][_position.get_x()];
@@ -151,18 +136,18 @@ void object::move(object* board[][X_DIMENSION],object* pellets[][X_DIMENSION], d
         board[_position.get_y()][_position.get_x()] = NULL;
         _position.set_x(newPos.get_x());
         _position.set_y(newPos.get_y());
-
     }// end if
-
 }
 bool object::isNULL(object* board[][X_DIMENSION], coords checkHere){
     if(board[checkHere.get_y()][checkHere.get_x()] == NULL)
     {
-
+        cout<<"DEBUG RETURNING TRUE: "<<endl;
         return true;
     }
     else
     {
+        cout<<"DEBUG RETURNING false: "<<endl;
+
         return false;
     }
 }// end check pos
@@ -175,6 +160,21 @@ void object::die(object* board[][X_DIMENSION])
 
 int object::getType(){
     return _objectType;
+}
+
+void object::reset_age()
+{
+    _age=0;
+}
+
+void object::increment_age()
+{
+    _age++;
+}
+
+void object::decrement_age()
+{
+    _age--;
 }
 
 void object::loadTexture(char* fileName)

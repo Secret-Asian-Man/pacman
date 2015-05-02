@@ -15,7 +15,6 @@ public:
 
 private:
 
-    int _direction;
     int _lives;
     char* _fileName;
 };

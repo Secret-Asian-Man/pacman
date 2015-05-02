@@ -8,6 +8,14 @@ public:
     door(coords position);
     ~door();
 
+    //accessors
+
+
+    //mutators
+
+    //main functions
+void move(object *board[][X_DIMENSION], object* pellets[][X_DIMENSION], directions choice);
+
 private:
     char* _fileName;
 };

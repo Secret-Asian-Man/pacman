@@ -14,3 +14,8 @@ warp::~warp()
 
 }
 
+void warp::move(object *board[][X_DIMENSION], object *pellets[][X_DIMENSION], directions choice)
+{
+
+}
+

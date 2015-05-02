@@ -10,6 +10,8 @@ public:
     ~walls();
 
     void die(object *board[][X_DIMENSION]);
+    void move(object *board[][X_DIMENSION], object* pellets[][X_DIMENSION], directions choice);
+
 
 private:
     char* _fileName;

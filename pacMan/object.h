@@ -34,6 +34,9 @@ public:
     void virtual die(object* board[][X_DIMENSION]);
     bool virtual isNULL(object* board[][X_DIMENSION], coords checkHere);
     int getType();
+    void reset_age();
+    void virtual increment_age();
+    void decrement_age();
 
     //public variables
     sf::Texture _texture;
@@ -48,9 +51,10 @@ protected:
 
 private:
     char _objectType;
-    int _age;
     bool _hasMoved;
     int _speed;
+    int _age;
+    //directions _direction;
 
 };
 

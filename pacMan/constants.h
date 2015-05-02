@@ -4,12 +4,13 @@
 #include <iostream>
 
 //X is collumns, Y is rows!
-const int X_DIMENSION=28; //orginal 31 (0 BASED!!)
-const int Y_DIMENSION=31; //original 28 (0 BASED!!)
+const int X_DIMENSION=28; //orginal 28 (0 BASED!!) 0-27
+const int Y_DIMENSION=31; //original 31 (0 BASED!!) 0-30
 const int HUD_SIZE=50;
 const int BOX_SIZE=25;
 
 const int LIVES=3;
+const int GATE_TIMER=200;
 
 const char PACMAN='M';
 const char WALLS='W';
@@ -40,6 +41,13 @@ enum directions{
     goRight=1,
     goUp=0,
     goDown=2
+};
+
+enum gameState{
+    normal=0,
+    paused=1,
+    gameOver=2,
+    win=3
 };
 
 //SFML stuff
