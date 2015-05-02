@@ -5,7 +5,7 @@
 ghost::ghost(coords position, char ghostType):object(position,GHOST)
 {
     _ghostType=ghostType;
-    _emotionalState=chase;
+    _ghostState=chase;
     _ghostDirection=goDown;
 }
 
@@ -19,33 +19,50 @@ char ghost::get_objectType()
     return _ghostType;
 }
 
-ghostEmotionalState ghost::get_emotionalState()
+ghostState ghost::get_ghostState()
 {
-    return _emotionalState;
+    return _ghostState;
 }
 
-void ghost::set_emotionalState(ghostEmotionalState other)
+void ghost::set_ghostState(ghostState other)
 {
-    _emotionalState=other;
+    _ghostState=other;
 }
 
 void ghost::move(object *board[][X_DIMENSION],object* pellets[][X_DIMENSION], directions direction) //[direction] is not used
 {
-    //==============================
+    if(/*_pacptr->get_pacState()==superPacman*/ false) //FIXXXXXXXXX _pacptr
+    {
+        _ghostState=scared;
+    }
+    else
+    {
+        _ghostState=chase;
+    }
+
     coords newDirect;
     if(atIntersection(board))
     {
         newDirect = Intersection(board,_ghostDirection);
-        //checkPacMan(board, newDirect);
+
+        if (_ghostState!=scared)
+        {
+            //checkPacMan(board, newDirect);
+        }
+
         object::move(board, pellets, newDirect);
     }// end if
     else
     {
-        //checkPacMan(board, _ghostDirection);
+        if (_ghostState!=scared)
+        {
+            //checkPacMan(board, _ghostDirection);
+
+        }
+
         object::move( board, pellets, _ghostDirection);
     }
 
-    //======================
 
     object::increment_age();
 }
@@ -66,7 +83,7 @@ coords ghost::Intersection(object *board[][X_DIMENSION], directions ghostDirecti
 
     switch(ghostDirection)
     {
-        case goUp:
+    case goUp:
         // UP
         if(board[_position.get_y()-1][_position.get_x()]==NULL || board[_position.get_y()-1][_position.get_x()]->getType()==PACMAN)
             exits.push_back(coords (_position.get_x(),_position.get_y()-1));
@@ -76,9 +93,9 @@ coords ghost::Intersection(object *board[][X_DIMENSION], directions ghostDirecti
         // LEFT
         if(board[_position.get_y()][_position.get_x()-1]==NULL || board[_position.get_y()][_position.get_x()-1]->getType()==PACMAN)
             exits.push_back(coords (_position.get_x()-1,_position.get_y()));
-            break;
+        break;
 
-        case goRight:
+    case goRight:
         // UP
         if(board[_position.get_y()-1][_position.get_x()]==NULL || board[_position.get_y()-1][_position.get_x()]->getType()==PACMAN)
             exits.push_back(coords (_position.get_x(),_position.get_y()-1));
@@ -91,16 +108,16 @@ coords ghost::Intersection(object *board[][X_DIMENSION], directions ghostDirecti
         break;
 
     case goLeft:
-    // UP
-    if(board[_position.get_y()-1][_position.get_x()]==NULL || board[_position.get_y()-1][_position.get_x()]->getType()==PACMAN)
-        exits.push_back(coords (_position.get_x(),_position.get_y()-1));
-    // DOWN
-    if(board[_position.get_y()+1][_position.get_x()]==NULL || board[_position.get_y()+1][_position.get_x()]->getType()==PACMAN)
-        exits.push_back(coords (_position.get_x(),_position.get_y()+1));
-    // LEFT
-    if(board[_position.get_y()][_position.get_x()-1]==NULL || board[_position.get_y()][_position.get_x()-1]->getType()==PACMAN)
-        exits.push_back(coords (_position.get_x()-1,_position.get_y()));
-            break;
+        // UP
+        if(board[_position.get_y()-1][_position.get_x()]==NULL || board[_position.get_y()-1][_position.get_x()]->getType()==PACMAN)
+            exits.push_back(coords (_position.get_x(),_position.get_y()-1));
+        // DOWN
+        if(board[_position.get_y()+1][_position.get_x()]==NULL || board[_position.get_y()+1][_position.get_x()]->getType()==PACMAN)
+            exits.push_back(coords (_position.get_x(),_position.get_y()+1));
+        // LEFT
+        if(board[_position.get_y()][_position.get_x()-1]==NULL || board[_position.get_y()][_position.get_x()-1]->getType()==PACMAN)
+            exits.push_back(coords (_position.get_x()-1,_position.get_y()));
+        break;
 
     case goDown:
         // RIGHT
@@ -117,17 +134,17 @@ coords ghost::Intersection(object *board[][X_DIMENSION], directions ghostDirecti
 
     if (exits.size()==0)
     {
-    return _position;
+        return _position;
     }
 
     coords newCoord = choseDirection(exits, exits.size());
-//    coords newCoord = _position;
+    //    coords newCoord = _position;
 
-     _ghostDirection=findDirection(newCoord);
+    _ghostDirection=findDirection(newCoord);
 
-cout<<"DEBUG ghost direction: ";cout<<_ghostDirection<<endl;
-cout<<"DEBUG oldCoord: ";_position.print_xy();cout<<endl;cout<<endl;
-cout<<"DEBUG newCoord: ";newCoord.print_xy();cout<<endl;cout<<endl;
+    cout<<"DEBUG ghost direction: ";cout<<_ghostDirection<<endl;
+    cout<<"DEBUG oldCoord: ";_position.print_xy();cout<<endl;cout<<endl;
+    cout<<"DEBUG newCoord: ";newCoord.print_xy();cout<<endl;cout<<endl;
 
 
 

@@ -106,7 +106,6 @@ void object::move(object* board[][X_DIMENSION],object* pellets[][X_DIMENSION], d
     coords newPos(_position.get_x(),_position.get_y()); //starts at pacman's current position
     // up = 0, right = 1, down = 2, left = 3
 
-    directions bank;
 
     switch(direction){
 
@@ -122,7 +121,7 @@ void object::move(object* board[][X_DIMENSION],object* pellets[][X_DIMENSION], d
         newPos.set_y(newPos.get_y()+1);
         break;
 
-    case goLeft: //put sprite rotation in here instead!!!!@@@@@@@@@
+    case goLeft:
         newPos.set_x(newPos.get_x()-1);
         break;
 
@@ -130,7 +129,7 @@ void object::move(object* board[][X_DIMENSION],object* pellets[][X_DIMENSION], d
         break;
     }// end switch
 
-    if(isNULL(board, newPos)) //if the spot in the direction is empty, move there@@@@@@@@@@
+    if(isNULL(board, newPos))
     {
         board[newPos.get_y()][newPos.get_x()] = board[_position.get_y()][_position.get_x()];
 
@@ -138,10 +137,7 @@ void object::move(object* board[][X_DIMENSION],object* pellets[][X_DIMENSION], d
         _position.set_x(newPos.get_x());
         _position.set_y(newPos.get_y());
     }
-    else
-        {
-                //keep moving in the same direction, until spot is empty or direction is changed
-        }
+
 }
 bool object::isNULL(object* board[][X_DIMENSION], coords checkHere){
     if(board[checkHere.get_y()][checkHere.get_x()] == NULL)

@@ -10,7 +10,8 @@ const int HUD_SIZE=50;
 const int BOX_SIZE=25;
 
 const int LIVES=3;
-const int GATE_TIMER=200;
+const int GATE_TIMER=100;
+const int SUPER_PACMAN_DURATION=50;
 
 const char PACMAN='M';
 const char WALLS='W';
@@ -35,7 +36,8 @@ const char NEXT_LINE=10; // return/enter key
 //R=Warp
 
 
-enum directions{
+enum directions
+{
     none=-1,
     goLeft=3,
     goRight=1,
@@ -43,11 +45,25 @@ enum directions{
     goDown=2
 };
 
-enum gameState{
+enum gameState
+{
     normal=0,
     paused=1,
     gameOver=2,
     win=3
+};
+
+enum pacManState
+{
+    normalPacman=0,
+    superPacman=1,
+};
+
+enum ghostState
+{
+    chase=0,
+    scared=1,
+    scatter=2,
 };
 
 //SFML stuff

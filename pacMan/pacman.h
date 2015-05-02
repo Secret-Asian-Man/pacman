@@ -12,20 +12,22 @@ public:
     //accessors
     directions get_pacmanDirection();
     int get_lives();
+    pacManState get_pacState();
 
     //mutators
     void set_pacmanDirection(directions other);
     void set_lives(int other);
-
+    void set_pacState(pacManState other);
 
 
     void die(object* board[][X_DIMENSION]);
     void move(object *board[][X_DIMENSION], object* pellets[][X_DIMENSION], directions choice);
-    void checkPellet(object* pellet[][X_DIMENSION], directions choice);
+    char checkPellet(object* pellet[][X_DIMENSION], directions choice);
 
 private:
 
     int _lives;
+    pacManState _pacState;
     char* _fileName;
     directions _pacmanDirection;
 

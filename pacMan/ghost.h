@@ -5,12 +5,6 @@
 #include <vector>
 using namespace std;
 
-enum ghostEmotionalState{
-    invalid=-1,
-    chase=0,
-    scatter=1,
-    scared=2
-};
 class ghost: public object
 {
 public:
@@ -19,10 +13,10 @@ public:
 
     //accessors
     char get_objectType();
-    ghostEmotionalState get_emotionalState();
+    ghostState get_ghostState();
 
     //mutators
-    void set_emotionalState(ghostEmotionalState other);
+    void set_ghostState(ghostState other);
 
     //main functions
     void move(object *board[][X_DIMENSION],object *pellets[][X_DIMENSION], directions direction);
@@ -35,11 +29,11 @@ public:
 
 private:
     char _ghostType;
-    ghostEmotionalState _emotionalState;
+    ghostState _ghostState;
     directions _ghostDirection;
     directions findDirection(coords newCoords);
     pacman* _pacptr;
 
-    };
+};
 
 #endif // GHOST_H
