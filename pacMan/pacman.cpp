@@ -23,6 +23,26 @@ pacman::~pacman()
 
 }
 
+directions pacman::get_pacmanDirection()
+{
+    return _pacmanDirection;
+}
+
+int pacman::get_lives()
+{
+    return _lives;
+}
+
+void pacman::set_pacmanDirection(directions other)
+{
+    _pacmanDirection=other;
+}
+
+void pacman::set_lives(int other)
+{
+    _lives=other;
+}
+
 
 void pacman::die(object *board[][X_DIMENSION])
 {
@@ -38,30 +58,81 @@ void pacman::die(object *board[][X_DIMENSION])
 
 void pacman::move(object *board[][X_DIMENSION], object* pellets[][X_DIMENSION], directions choice)
 {
-    checkPellet(pellets, choice); //checks if there is a pellet in the next slot, and kills it if found
-    object::move(board, pellets, choice);
+    coords pacPosition(object::get_position());
 
     switch (choice)
     {
     case goUp:
-        _sprite.setRotation(-90);
-        break;
+        if (board[pacPosition.get_y()-1][pacPosition.get_x()]==NULL)
+        {
+               _pacmanDirection=choice;
+               _sprite.setRotation(-90);
 
-    case goDown:
-        _sprite.setRotation(90);
-        break;
-
-    case goLeft:
-        _sprite.setRotation(180);
+        }
+        else
+        {
+            cout<<"@#$!$#%"<<endl;
+        }
+        //else move (already taken care of after switch case)
         break;
 
     case goRight:
-        _sprite.setRotation(0);
+        if (board[pacPosition.get_y()][pacPosition.get_x()+1]==NULL)
+        {
+               _pacmanDirection=choice;
+               _sprite.setRotation(0);
+
+        }
+        break;
+
+    case goDown:
+        if (board[pacPosition.get_y()+1][pacPosition.get_x()]==NULL)
+        {
+               _pacmanDirection=choice;
+               _sprite.setRotation(90);
+
+        }
+        break;
+
+    case goLeft: //put sprite rotation in here instead!!!!@@@@@@@@@
+        if (board[pacPosition.get_y()][pacPosition.get_x()-1]==NULL)
+        {
+               _pacmanDirection=choice;
+               _sprite.setRotation(180);
+
+        }
         break;
 
     default:
         break;
+
     }
+
+
+    checkPellet(pellets, _pacmanDirection); //checks if there is a pellet in the next slot, and kills it if found
+    object::move(board, pellets, _pacmanDirection);
+
+//    switch (choice)
+//    {
+//    case goUp:
+//        _sprite.setRotation(-90);
+//        break;
+
+//    case goDown:
+//        _sprite.setRotation(90);
+//        break;
+
+//    case goLeft:
+//        _sprite.setRotation(180);
+//        break;
+
+//    case goRight:
+//        _sprite.setRotation(0);
+//        break;
+
+//    default:
+//        break;
+//    }
 
     object::increment_age();
 }

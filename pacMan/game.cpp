@@ -95,25 +95,25 @@ void game::keyEvents()
         case Keyboard::A:
         case Keyboard::Left:
            // cout<<"Left button pressed"<<endl;
-            _gameBoard.set_directions(goLeft); //send int 3
+            _gameBoard.set_requestedDirection(goLeft); //send int 3
             break;
 
         case Keyboard::D:
         case Keyboard::Right:
             //cout<<"Right button pressed"<<endl;
-            _gameBoard.set_directions(goRight); //send int 1
+            _gameBoard.set_requestedDirection(goRight); //send int 1
             break;
 
         case Keyboard::W:
         case Keyboard::Up:
            // cout<<"Up button pressed"<<endl;
-            _gameBoard.set_directions(goUp); //sends int 0
+            _gameBoard.set_requestedDirection(goUp); //sends int 0
             break;
 
         case Keyboard::S:
         case Keyboard::Down:
            // cout<<"Down button pressed"<<endl;
-            _gameBoard.set_directions(goDown); //sends int 2
+            _gameBoard.set_requestedDirection(goDown); //sends int 2
             break;
 
         default:

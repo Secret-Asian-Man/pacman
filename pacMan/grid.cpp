@@ -17,7 +17,8 @@ grid::grid()
 {
     _pelletCount=0;
     _gameState=normal;
-    _pacmanDirection=none;
+//    _pacmanDirection=none;
+    _requestedDirection=none;
 
     initializeToNull();
     loadMap();
@@ -49,10 +50,15 @@ gameState grid::get_gameState()
     return _gameState;
 }
 
-directions grid::get_directions()
+directions grid::get_requestedDirection()
 {
-    return _pacmanDirection;
+    return _requestedDirection;
 }
+
+//directions grid::get_pacmanDirection()
+//{
+//    return _pacmanDirection;
+//}
 
 void grid::set_pelletCount(int other)
 {
@@ -64,9 +70,14 @@ void grid::set_gameState(gameState other)
     _gameState=other;
 }
 
-void grid::set_directions(directions other)
+//void grid::set_pacmanDirection(directions other)
+//{
+//    _pacmanDirection=other;
+//}
+
+void grid::set_requestedDirection(directions other)
 {
-    _pacmanDirection=other;
+    _requestedDirection=other;
 }
 void grid::step()
 {
@@ -86,7 +97,7 @@ void grid::step()
                 if (_board[i][j]!=NULL && _board[i][j]->get_hasmoved()==false)
                 {
                     _board[i][j]->set_hasMoved(true);
-                    _board[i][j]->move(_board, _pellets, _pacmanDirection);
+                    _board[i][j]->move(_board, _pellets, _requestedDirection);
                 }
             }
         }

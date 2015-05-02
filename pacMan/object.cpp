@@ -96,10 +96,7 @@ cout<<"DEBUG newDirect: ";newDirect.print_xy();cout<<endl;
 
         //set has moved to true;
     }// end if
-    else
-    {
 
-    }
 
 
 }

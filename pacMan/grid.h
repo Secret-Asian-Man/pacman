@@ -16,12 +16,14 @@ public:
     //accessors
     int get_pelletCount();
     gameState get_gameState();
-    directions get_directions();
+//    directions get_pacmanDirection();
+    directions get_requestedDirection();
 
     //mutators
     void set_pelletCount(int other);
     void set_gameState(gameState other);
-    void set_directions(directions other);
+//    void set_pacmanDirection(directions other);
+    void set_requestedDirection(directions other);
 
     //main functions
     void step();
@@ -42,7 +44,8 @@ public:
 private:
     //private variables
     int _pelletCount;
-    directions _pacmanDirection; //this class calls the move function, so it must provide the direction!
+//    directions _pacmanDirection; //this class calls the move function, so it must provide the direction!
+    directions _requestedDirection;
     gameState _gameState;
 
     //private functions
