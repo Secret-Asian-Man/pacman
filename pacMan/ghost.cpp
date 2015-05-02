@@ -31,23 +31,23 @@ void ghost::set_emotionalState(ghostEmotionalState other)
 
 void ghost::move(object *board[][X_DIMENSION],object* pellets[][X_DIMENSION], directions direction) //[direction] is not used
 {
-//    //==============================
-//    coords newDirect;
-//    if(atIntersection(board))
-//    {
-//        newDirect = Intersection(board,_ghostDirection);
-//        //checkPacMan(board, newDirect);
-//        object::move(board, pellets, newDirect);
-//    }// end if
-//    else
-//    {
-//        //checkPacMan(board, _ghostDirection);
-//        object::move( board, pellets, _ghostDirection);
-//    }
+    //==============================
+    coords newDirect;
+    if(atIntersection(board))
+    {
+        newDirect = Intersection(board,_ghostDirection);
+        //checkPacMan(board, newDirect);
+        object::move(board, pellets, newDirect);
+    }// end if
+    else
+    {
+        //checkPacMan(board, _ghostDirection);
+        object::move( board, pellets, _ghostDirection);
+    }
 
-//    //======================
+    //======================
 
-//    object::increment_age();
+    object::increment_age();
 }
 
 coords ghost::Intersection(object *board[][X_DIMENSION], directions ghostDirection)
@@ -124,8 +124,13 @@ coords ghost::Intersection(object *board[][X_DIMENSION], directions ghostDirecti
 //    coords newCoord = _position;
 
      _ghostDirection=findDirection(newCoord);
+
+cout<<"DEBUG ghost direction: ";cout<<_ghostDirection<<endl;
 cout<<"DEBUG oldCoord: ";_position.print_xy();cout<<endl;cout<<endl;
 cout<<"DEBUG newCoord: ";newCoord.print_xy();cout<<endl;cout<<endl;
+
+
+
     return newCoord;
 }
 
@@ -172,7 +177,7 @@ double ghost::findDistance(coords positions)
 {
 
     double distance;
-    return distance = sqrt(pow(positions.get_x() - _pacptr->get_position().get_x(),2) + pow(positions.get_y() - _pacptr->get_position().get_y(),2));
+    return distance = sqrt(pow(positions.get_x() - 1,2) + pow(positions.get_y() - 1,2));
 
 
 }
@@ -262,7 +267,7 @@ bool ghost::atIntersection(object* board[][X_DIMENSION])
     if(board[_position.get_y()][_position.get_x()-1]==NULL || board[_position.get_y()][_position.get_x()-1]->getType()==PACMAN)
         exits++;
 
-    if(exits > 2)
+    if(exits > 1)
         return true;
     else
         return false;
