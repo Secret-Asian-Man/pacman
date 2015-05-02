@@ -38,7 +38,7 @@ void pacman::die(object *board[][X_DIMENSION])
 
 void pacman::move(object *board[][X_DIMENSION], object* pellets[][X_DIMENSION], directions choice)
 {
-    checkPellet(pellets, choice);
+    checkPellet(pellets, choice); //checks if there is a pellet in the next slot, and kills it if found
     object::move(board, pellets, choice);
 
     switch (choice)
@@ -72,7 +72,8 @@ void pacman::checkPellet(object* pellet[][X_DIMENSION], directions choice)
     coords temp(object::get_position()); //pacman's position
 
     // up = 0, right = 1, down = 2, left = 3
-    switch(choice){
+    switch(choice)
+    {
 
     //================ up =====================
     case goUp:
@@ -113,9 +114,6 @@ void pacman::checkPellet(object* pellet[][X_DIMENSION], directions choice)
 
     default:
         break;
-
-
-
     }// end switch
 }
 
