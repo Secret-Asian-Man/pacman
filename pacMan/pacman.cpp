@@ -100,7 +100,7 @@ void pacman::move(object *board[][X_DIMENSION], object* pellets[][X_DIMENSION], 
         }
         break;
 
-    case goLeft: //put sprite rotation in here instead!!!!@@@@@@@@@
+    case goLeft:
         if (board[pacPosition.get_y()][pacPosition.get_x()-1]==NULL)
         {
             _pacmanDirection=choice;
@@ -129,7 +129,7 @@ void pacman::move(object *board[][X_DIMENSION], object* pellets[][X_DIMENSION], 
     if (_pacState==superPacman)
     {
         cout<<"SUPERPACMAN!!!!!!!"<<endl;
-        //checkGhost(board, _pacmanDirection); //have ghosts spawn back at house when ghost::die() is run
+        //checkGhost(board, _pacmanDirection); //FIXXXXX checkGhost(board, _pacmanDirection) //have ghosts spawn back at house when ghost::die() is run
     }
     else
     {

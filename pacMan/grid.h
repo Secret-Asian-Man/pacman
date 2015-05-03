@@ -16,13 +16,11 @@ public:
     //accessors
     int get_pelletCount();
     gameState get_gameState();
-//    directions get_pacmanDirection();
     directions get_requestedDirection();
 
     //mutators
     void set_pelletCount(int other);
     void set_gameState(gameState other);
-//    void set_pacmanDirection(directions other);
     void set_requestedDirection(directions other);
 
     //main functions

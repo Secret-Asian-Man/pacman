@@ -27,6 +27,7 @@ private:
     Event _event;
     Clock _clock;
     Time _time;
+    bool _paused;
     //RectangleShape ; //gotta be a better way to draw the shapes
 
     //private functions

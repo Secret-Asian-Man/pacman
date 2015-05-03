@@ -17,7 +17,6 @@ grid::grid()
 {
     _pelletCount=0;
     _gameState=normal;
-//    _pacmanDirection=none;
     _requestedDirection=none;
 
     initializeToNull();
@@ -55,11 +54,6 @@ directions grid::get_requestedDirection()
     return _requestedDirection;
 }
 
-//directions grid::get_pacmanDirection()
-//{
-//    return _pacmanDirection;
-//}
-
 void grid::set_pelletCount(int other)
 {
     _pelletCount=other;
@@ -69,11 +63,6 @@ void grid::set_gameState(gameState other)
 {
     _gameState=other;
 }
-
-//void grid::set_pacmanDirection(directions other)
-//{
-//    _pacmanDirection=other;
-//}
 
 void grid::set_requestedDirection(directions other)
 {
@@ -120,7 +109,7 @@ void grid::step()
 
     if (_gameState==gameOver)
     {
-        cout<<"GAMEOVER"<<endl;
+        cout<<"GAMEOVER!!"<<endl;
     }
 
     if (_gameState==win)

@@ -47,7 +47,7 @@ void ghost::move(object *board[][X_DIMENSION],object* pellets[][X_DIMENSION], di
 
         if (_ghostState!=scared)
         {
-            //checkPacMan(board, newDirect);
+            //checkPacMan(board, newDirect); //FIXXXX checkPacMan()
         }
 
         object::move(board, pellets, newDirect);
@@ -56,8 +56,7 @@ void ghost::move(object *board[][X_DIMENSION],object* pellets[][X_DIMENSION], di
     {
         if (_ghostState!=scared)
         {
-            //checkPacMan(board, _ghostDirection);
-
+            //checkPacMan(board, _ghostDirection); //FIXXXX checkPacMan()
         }
 
         object::move( board, pellets, _ghostDirection);

@@ -7,6 +7,7 @@ game::game()
 
     _window.setFramerateLimit(FRAME_RATE);
     _time=Time::Zero;
+    _paused=false;
 
     setWindow();
 
@@ -82,6 +83,7 @@ void game::keyEvents()
         if (_event.type==Event::Closed) //if X button is pressed close the window
         {
             _window.close();
+            exit(0);
             //cout<<"close button click"<<endl;
         }
 
@@ -90,11 +92,12 @@ void game::keyEvents()
         case Keyboard::Escape:
             //cout<<"esc button pressed"<<endl;
             _window.close();
+            exit(0);
             break;
 
         case Keyboard::A:
         case Keyboard::Left:
-           // cout<<"Left button pressed"<<endl;
+            // cout<<"Left button pressed"<<endl;
             _gameBoard.set_requestedDirection(goLeft); //send int 3
             break;
 
@@ -106,21 +109,68 @@ void game::keyEvents()
 
         case Keyboard::W:
         case Keyboard::Up:
-           // cout<<"Up button pressed"<<endl;
+            // cout<<"Up button pressed"<<endl;
             _gameBoard.set_requestedDirection(goUp); //sends int 0
             break;
 
         case Keyboard::S:
         case Keyboard::Down:
-           // cout<<"Down button pressed"<<endl;
+            // cout<<"Down button pressed"<<endl;
             _gameBoard.set_requestedDirection(goDown); //sends int 2
             break;
 
+        case Keyboard::P:
+
+            if (_paused==true)
+            {
+                _gameBoard.set_gameState(paused);
+                _paused=!_paused;
+            }
+            else
+            {
+                _gameBoard.set_gameState(normal);
+                _paused=!_paused;
+            }
+
+
+
+            break;
         default:
             //do nothing
             break;
         }
 
+
+
+
+
+
+        //        if (_event.type==Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) ) //if X button is pressed close the window
+        //        {
+        //            _window.close();
+        //            exit(0);
+        //            //cout<<"close button click"<<endl;
+        //        }
+
+        //        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+        //        {
+        //            _gameBoard.set_requestedDirection(goLeft); //send int 3
+        //        }
+
+        //        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) || sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+        //        {
+        //            _gameBoard.set_requestedDirection(goRight); //send int 3
+        //        }
+
+        //        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+        //        {
+        //            _gameBoard.set_requestedDirection(goUp); //send int 3
+        //        }
+
+        //        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+        //        {
+        //            _gameBoard.set_requestedDirection(goDown); //send int 3
+        //        }
     }
 }
 
