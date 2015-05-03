@@ -12,6 +12,8 @@ const int BOX_SIZE=25;
 const int LIVES=3;
 const int GATE_TIMER=100;
 const int SUPER_PACMAN_DURATION=50;
+const int PELLET_POOPER_TIMER=50;
+const int GATE_DROPPER_TIMER=100;
 
 const char PACMAN='M';
 const char WALLS='W';

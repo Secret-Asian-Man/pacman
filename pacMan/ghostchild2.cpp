@@ -14,3 +14,7 @@ ghostChild2::~ghostChild2()
 
 }
 
+void ghostChild2::move(object *board[][X_DIMENSION], object *pellets[][X_DIMENSION], directions direction)
+{
+    ghost::move(board,pellets,direction);
+}

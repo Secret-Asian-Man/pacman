@@ -11,6 +11,7 @@ using namespace std;
 object::object(coords position, char objectType,int age, bool hasMoved, int speed)
 {
     _position=position;
+    _spawnPosition=_position;
     _objectType=objectType;
     _age=age;
     _hasMoved=hasMoved;
@@ -25,6 +26,11 @@ object::~object()
 coords object::get_position()
 {
     return _position;
+}
+
+coords object::get_spawnPosition()
+{
+    return _spawnPosition;
 }
 
 char object::get_objectType()

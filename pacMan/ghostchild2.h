@@ -8,6 +8,9 @@ public:
     ghostChild2(coords position);
     ~ghostChild2();
 
+    //main functions
+    void move(object *board[][X_DIMENSION], object *pellets[][X_DIMENSION], directions direction);
+
 private:
     char* _fileName;
 

@@ -63,6 +63,12 @@ void pacman::die(object *board[][X_DIMENSION])
     {
         object::die(board);
     }
+    else
+    {
+        // move pacman and ghosts back to spawn.
+        //make ghosts poop pellets and gates
+
+    }
 
 }
 

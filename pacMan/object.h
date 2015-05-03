@@ -13,6 +13,7 @@ public:
 
     //accessors
     coords get_position();
+    coords get_spawnPosition();
     char virtual get_objectType();
     int get_age();
     bool get_hasmoved();
@@ -22,6 +23,7 @@ public:
 
     //mutators
     void set_position(coords position);
+    //don't make a mutator for _spawnPosition
     void set_objectType(char objectType);
     void set_age(int age);
     void set_hasMoved(bool hasMoved);
@@ -54,6 +56,8 @@ private:
     bool _hasMoved;
     int _speed;
     int _age;
+    coords _spawnPosition;
+
     //directions _direction;
 
 };
