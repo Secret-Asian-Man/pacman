@@ -93,6 +93,17 @@ void ghost::move(object *board[][X_DIMENSION],object* pellets[][X_DIMENSION], di
 
 }
 
+void ghost::die(object *board[][X_DIMENSION])
+{
+    coords spawn(object::get_spawnPosition());
+    coords pos(object::get_position());
+
+    board[spawn.get_y()][spawn.get_x()]=board[pos.get_y()][pos.get_x()];
+    board[pos.get_y()][pos.get_x()]=NULL;
+
+    object::set_position(spawn);
+}
+
 coords ghost::Intersection(object *board[][X_DIMENSION], directions ghostDirection)
 {
     // checks surrounding positions for more than 1 exit.

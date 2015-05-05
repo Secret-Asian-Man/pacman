@@ -21,6 +21,7 @@ public:
 
     //main functions
     void move(object *board[][X_DIMENSION],object *pellets[][X_DIMENSION], directions direction);
+    void die(object *board[][X_DIMENSION]);
     coords Intersection(object* board[][X_DIMENSION], directions ghostDirection);
     coords choseDirection(deque<coords> exits, int vectorSize);
     double findDistance(coords fromHere, coords toHere);

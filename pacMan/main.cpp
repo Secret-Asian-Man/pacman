@@ -9,13 +9,6 @@ int main()
     main._gameBoard.show();
     cout<<"pelletcount: "<<main._gameBoard.get_pelletCount(); cout<<endl;
 
-
-    cout<<endl;
-    cout<<endl;
-    cout<<endl;
-    cout<<endl;
-    cout<<endl;
-    cout<<endl;
     return 0;
 }
 
