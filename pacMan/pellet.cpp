@@ -1,6 +1,7 @@
 #include "pellet.h"
 #include "constants.h"
 #include "grid.h"
+#include <windows.h>
 
 pellet::pellet(coords position):object(position,PELLET)
 {
@@ -14,6 +15,14 @@ pellet::pellet(coords position):object(position,PELLET)
 pellet::~pellet()
 {
 
+}
+
+void pellet::die(object *board[][X_DIMENSION])
+{
+    Beep(2000,7);
+    Beep(500,7);
+
+    object::die(board);
 }
 
 

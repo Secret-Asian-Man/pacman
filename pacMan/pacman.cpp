@@ -1,10 +1,8 @@
-//DAVID
-
-
-
 #include "pacman.h"
 #include "constants.h"
 #include <iostream>
+#include <windows.h>
+
 using namespace std;
 
 pacman::pacman(coords position):object(position,PACMAN)
@@ -62,13 +60,18 @@ void pacman::die(object *board[][X_DIMENSION])
     if (_lives<0)
     {
         object::die(board);
-
     }
     else
     {
         // move pacman and ghosts back to spawn.
         //make ghosts poop pellets and gates
+        coords spawn(object::get_spawnPosition());
+        coords pos(object::get_position());
 
+        board[spawn.get_y()][spawn.get_x()]=board[pos.get_y()][pos.get_x()];
+        board[pos.get_y()][pos.get_x()]=NULL;
+
+        object::set_position(spawn);
     }
 
 }
@@ -136,6 +139,13 @@ void pacman::move(object *board[][X_DIMENSION], object* pellets[][X_DIMENSION], 
 
     if (_pacState==superPacman)
     {
+
+        Beep(5000,2);
+        Beep(3000,2);
+        Beep(5000,2);
+
+
+
         //cout<<"SUPERPACMAN!!!!!!!"<<endl;
         checkGhost(board, _pacmanDirection); //FIXXXXX checkGhost(board, _pacmanDirection) //have ghosts spawn back at house when ghost::die() is run
     }

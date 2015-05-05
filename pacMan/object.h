@@ -2,6 +2,7 @@
 #define OBJECT_H
 #include "coords.h"
 #include "constants.h"
+
 class object
 {
 public:

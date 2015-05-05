@@ -10,9 +10,10 @@ game::game()
     _paused=false;
 
     if (!_music.openFromFile("pacmanRemixMusic.ogg"))
-    cout<<"File not found!"<<endl;
+        cout<<"File not found!"<<endl;
     _music.play();
     _music.setLoop(true);
+    _music.setVolume(10);
 
 
     setWindow();

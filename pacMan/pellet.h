@@ -8,6 +8,7 @@ public:
     pellet(coords position);
     ~pellet();
 
+    void die(object *board[][X_DIMENSION]);
 
 private:
     char* _fileName;

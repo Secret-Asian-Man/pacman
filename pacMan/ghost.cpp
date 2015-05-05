@@ -33,25 +33,7 @@ void ghost::set_ghostState(ghostState other)
 
 void ghost::move(object *board[][X_DIMENSION],object* pellets[][X_DIMENSION], directions direction) //[direction] is not used
 {
-    //cout<<"age: "<<object::get_age()<<endl;
-    if(object::get_age()<SCATTER_TIME)
-    {
-        //scatter
-        _ghostState=scatterMode;
 
-    }
-
-    if (object::get_age()>SCATTER_TIME && object::get_age()<SCATTER_TIME+CHASE_TIME)
-    {
-        //chase
-        _ghostState=chaseMode;
-
-    }
-    if(object::get_age()>=SCATTER_TIME+CHASE_TIME)
-    {
-        object::reset_age();
-
-    }
 
     if(/*_pacptr->get_pacState()==superPacman*/ false) //FIXXXXXXXXX _pacptr
     {
@@ -59,7 +41,24 @@ void ghost::move(object *board[][X_DIMENSION],object* pellets[][X_DIMENSION], di
     }
     else
     {
-        _ghostState=chaseMode;
+        //cout<<"age: "<<object::get_age()<<endl;
+        if(object::get_age()<SCATTER_TIME)
+        {
+            //scatter
+            _ghostState=scatterMode;
+
+        }
+
+        if (object::get_age()>SCATTER_TIME && object::get_age()<SCATTER_TIME+CHASE_TIME)
+        {
+            //chase
+            _ghostState=chaseMode;
+        }
+        if(object::get_age()>=SCATTER_TIME+CHASE_TIME)
+        {
+            object::reset_age();
+
+        }
     }
 
     coords newDirect;
@@ -217,10 +216,14 @@ coords ghost::choseDirection(deque<coords> exits, int vectorSize)
         // decrease vector size
         vectorSize--;
 
-        if(_ghostState == chaseMode){
+        if(_ghostState == chaseMode)
+        {
+
             compare = findDistance(hold, object::get_spawnPosition());//previously coords(26,29)
         }
-        if(_ghostState == scatterMode){
+        if(_ghostState == scatterMode)
+        {
+
             compare = findDistance(hold, coords(26,29));//previously object::get_spawnPosition()
         }
 
