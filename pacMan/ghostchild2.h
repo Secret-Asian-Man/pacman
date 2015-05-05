@@ -5,7 +5,7 @@
 class ghostChild2:public ghost
 {
 public:
-    ghostChild2(coords position);
+    ghostChild2(coords position/*,pacman* pacptr*/);
     ~ghostChild2();
 
     //main functions

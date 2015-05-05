@@ -23,6 +23,7 @@ public:
     void die(object* board[][X_DIMENSION]);
     void move(object *board[][X_DIMENSION], object* pellets[][X_DIMENSION], directions choice);
     char checkPellet(object* pellet[][X_DIMENSION], directions choice);
+    void checkGhost(object* board[][X_DIMENSION], directions choice);
 
 private:
 

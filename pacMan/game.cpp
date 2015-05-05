@@ -9,6 +9,12 @@ game::game()
     _time=Time::Zero;
     _paused=false;
 
+    if (!_music.openFromFile("pacmanRemixMusic.ogg"))
+    cout<<"File not found!"<<endl;
+    _music.play();
+    _music.setLoop(true);
+
+
     setWindow();
 
     gameStart();
@@ -125,11 +131,14 @@ void game::keyEvents()
             {
                 _gameBoard.set_gameState(paused);
                 _paused=!_paused;
+                _music.pause();
             }
             else
             {
                 _gameBoard.set_gameState(normal);
                 _paused=!_paused;
+                _music.play();
+
             }
 
 

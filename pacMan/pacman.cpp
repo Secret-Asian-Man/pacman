@@ -62,6 +62,7 @@ void pacman::die(object *board[][X_DIMENSION])
     if (_lives<0)
     {
         object::die(board);
+
     }
     else
     {
@@ -74,6 +75,7 @@ void pacman::die(object *board[][X_DIMENSION])
 
 void pacman::move(object *board[][X_DIMENSION], object* pellets[][X_DIMENSION], directions choice)
 {
+
     coords pacPosition(object::get_position());//makes a copy of pacman's current position
 
     switch (choice) //enforces a precondition, that spot must be empty to change pacman's direction
@@ -134,12 +136,12 @@ void pacman::move(object *board[][X_DIMENSION], object* pellets[][X_DIMENSION], 
 
     if (_pacState==superPacman)
     {
-        cout<<"SUPERPACMAN!!!!!!!"<<endl;
-        //checkGhost(board, _pacmanDirection); //FIXXXXX checkGhost(board, _pacmanDirection) //have ghosts spawn back at house when ghost::die() is run
+        //cout<<"SUPERPACMAN!!!!!!!"<<endl;
+        checkGhost(board, _pacmanDirection); //FIXXXXX checkGhost(board, _pacmanDirection) //have ghosts spawn back at house when ghost::die() is run
     }
     else
     {
-        cout<<"normal pacman..."<<endl;
+        //cout<<"normal pacman..."<<endl;
 
     }
 
@@ -209,5 +211,77 @@ char pacman::checkPellet(object* pellet[][X_DIMENSION], directions choice)
     }// end switch
 
     return pelletType; //returns the pellet type;
+}
+
+void pacman::checkGhost(object *board[][X_DIMENSION], directions choice)
+{
+    // up = 0, right = 1, down = 2, left = 3
+    switch(choice){
+
+    //================ up =====================
+    case goUp:
+
+        if (board[_position.get_y()-1][_position.get_x()]!=NULL)
+        {
+            if(board[_position.get_y()-1][_position.get_x()]->getType() == GHOST ){
+                board[_position.get_y()-1][_position.get_x()]->die(board);
+                // decrement pellet
+            }// end if
+        }
+
+
+        break;
+
+
+        //================ right =====================
+    case goRight:
+
+        if (board[_position.get_y()][_position.get_x()+1]!=NULL)
+        {
+            if(board[_position.get_y()][_position.get_x()+1]->getType() == GHOST )
+            {
+                board[_position.get_y()][_position.get_x()+1]->die(board);
+            }
+        }// end if
+
+
+        break;
+
+        //================ down =====================
+    case goDown:
+
+        if (board[_position.get_y()+1][_position.get_x()]!=NULL)
+        {
+            if(board[_position.get_y()+1][_position.get_x()]->getType() == GHOST ){
+                board[_position.get_y()+1][_position.get_x()]->die(board);
+
+            }
+
+        }// end if
+
+        break;
+
+        //================ left =====================
+    case goLeft:
+
+        if (board[_position.get_y()][_position.get_x()-1]!=NULL)
+        {
+            if(board[_position.get_y()][_position.get_x()-1]->getType() == GHOST ){
+                board[_position.get_y()][_position.get_x()-1]->die(board);
+        }
+
+        }// end if
+        break;
+
+    default:
+
+        // direction is incorrect
+        //cout<<"*** eat pellet error ***"<<endl;
+        break;
+
+
+
+    }// end switch
+
 }
 

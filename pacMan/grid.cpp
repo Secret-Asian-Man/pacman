@@ -86,6 +86,8 @@ void grid::step()
                 if (_board[i][j]!=NULL && _board[i][j]->get_hasmoved()==false)
                 {
                     _board[i][j]->set_hasMoved(true);
+                    //cout<<"i: "<<i<<" j:"<<j<<" type:"<<static_cast<char>(_board[i][j]->getType())<<endl;
+
                     _board[i][j]->move(_board, _pellets, _requestedDirection);
                 }
             }
@@ -93,7 +95,7 @@ void grid::step()
 
         //show();
         _pelletCount=count_pellets();
-        cout<<"DEBUG _pelletCount: "<<_pelletCount<<endl;
+        //cout<<"DEBUG _pelletCount: "<<_pelletCount<<endl;
         if (_pelletCount<=0)
         {
             _gameState=win;
@@ -135,19 +137,19 @@ void grid::show()
         cout<<endl;
     }
 
-    //    for (int i=0;i<Y_DIMENSION;i++)
-    //    {
-    //        for (int j=0;j<X_DIMENSION;j++)
-    //        {
-    //            if (_pellets[i][j]!=NULL)
-    //            {
-    //                cout<<_pellets[i][j]->get_objectType();
-    //            }
-    //            else
-    //                cout<<".";
-    //        }
-    //        cout<<endl;
-    //    }
+        for (int i=0;i<Y_DIMENSION;i++)
+        {
+            for (int j=0;j<X_DIMENSION;j++)
+            {
+                if (_pellets[i][j]!=NULL)
+                {
+                    cout<<_pellets[i][j]->get_objectType();
+                }
+                else
+                    cout<<".";
+            }
+            cout<<endl;
+        }
 }
 
 void grid::reset()
@@ -226,25 +228,32 @@ void grid::loadMap()
 
     loadFile();
 
+    //pacman player1(coords(0,0));
+    //pacman* pacPtr;
     while(!_mapData.eof()) //count starts from y:1-28, and x:1-31
     {
         _mapData.get(singleChar);
+
 
         switch (singleChar)
         {
         case PACMAN:
 
+            //_board[y][x]= new pacman(x,y);
+            //            _board[y][x]=new pacman(coords(x,y));
+            //            pacPtr = _board[y][x];
             _board[y][x]=new pacman(coords(x,y));
+
             x++;
             break;
 
         case GHOST_PELLET_POOPER:
-            _board[y][x]=new ghostChild1(coords(x,y));
+            _board[y][x]=new ghostChild1(coords(x,y)/*,&player1*/);
             x++;
             break;
 
         case GHOST_GATE_DROPPER:
-            _board[y][x]=new ghostChild2(coords(x,y));
+            _board[y][x]=new ghostChild2(coords(x,y)/*,&player1*/);
             x++;
             break;
 
@@ -280,7 +289,7 @@ void grid::loadMap()
             break;
 
         default:
-            cout<<"Invalid key..."<<endl;
+            //cout<<"Invalid key..."<<endl;
             break;
         }
 

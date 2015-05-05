@@ -92,7 +92,7 @@ void object::set_speed(int speed)
 
 void object::move(object* board[][X_DIMENSION],object* pellets[][X_DIMENSION], coords newDirect){
 
-cout<<"DEBUG newDirect: ";newDirect.print_xy();cout<<endl;
+    //cout<<"DEBUG newDirect: ";newDirect.print_xy();cout<<endl;
     if(isNULL(board, newDirect)){
         board[newDirect.get_y()][newDirect.get_x()] = board[_position.get_y()][_position.get_x()];
 
@@ -148,12 +148,12 @@ void object::move(object* board[][X_DIMENSION],object* pellets[][X_DIMENSION], d
 bool object::isNULL(object* board[][X_DIMENSION], coords checkHere){
     if(board[checkHere.get_y()][checkHere.get_x()] == NULL)
     {
-        cout<<"DEBUG RETURNING TRUE: "<<endl;
+        //cout<<"DEBUG RETURNING TRUE: "<<endl;
         return true;
     }
     else
     {
-        cout<<"DEBUG RETURNING false: "<<endl;
+        //cout<<"DEBUG RETURNING false: "<<endl;
 
         return false;
     }
@@ -171,7 +171,7 @@ int object::getType(){
 
 void object::reset_age()
 {
-    _age=0;
+    _age=1;
 }
 
 void object::increment_age()
@@ -182,6 +182,70 @@ void object::increment_age()
 void object::decrement_age()
 {
     _age--;
+}
+
+coords object::previous_position(directions currentDirection)
+{
+    coords newPos(_position.get_x(),_position.get_y()); //starts at object's current position
+
+    currentDirection=opposite_direction(currentDirection); //changes to opposite direction
+
+    switch(currentDirection){
+
+    case goUp:
+        newPos.set_y(newPos.get_y()-1);
+        break;
+
+    case goRight:
+        newPos.set_x(newPos.get_x()+1);
+        break;
+
+    case goDown:
+        newPos.set_y(newPos.get_y()+1);
+        break;
+
+    case goLeft:
+        newPos.set_x(newPos.get_x()-1);
+        break;
+
+    default:
+        break;
+    }// end switch
+
+    return newPos;
+}
+
+coords object::next_position(directions currentDirection)
+{
+
+}
+
+directions object::opposite_direction(directions currentDirection)
+{
+    switch (currentDirection)
+    {
+    case goUp:
+        return goDown;
+        break;
+
+    case goDown:
+        return goUp;
+        break;
+
+    case goRight:
+        return goLeft;
+        break;
+
+    case goLeft:
+        return goRight;
+        break;
+
+    default:
+       // cout<<"Invalid key..."<<endl;
+        break;
+    }
+
+    return none;
 }
 
 void object::loadTexture(char* fileName)

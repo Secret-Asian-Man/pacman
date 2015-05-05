@@ -10,10 +10,12 @@ const int HUD_SIZE=50;
 const int BOX_SIZE=25;
 
 const int LIVES=3;
-const int GATE_TIMER=100;
+const int GATE_TIMER=20;
 const int SUPER_PACMAN_DURATION=50;
 const int PELLET_POOPER_TIMER=50;
-const int GATE_DROPPER_TIMER=100;
+const int GATE_DROPPER_TIMER=10;
+const int SCATTER_TIME=15;
+const int CHASE_TIME=50;
 
 const char PACMAN='M';
 const char WALLS='W';
@@ -63,16 +65,16 @@ enum pacManState
 
 enum ghostState
 {
-    chase=0,
-    scared=1,
-    scatter=2,
+    chaseMode=0,
+    scaredMode=1,
+    scatterMode=2,
 };
 
 //SFML stuff
 const float WINDOW_WIDTH=X_DIMENSION*BOX_SIZE;
 const float WINDOW_HEIGHT=Y_DIMENSION*BOX_SIZE;
 const std::string GAME_TITLE="Pacman";
-const double RATE=0.5*1000;
+const double RATE=0.4*1000;
 const int FRAME_RATE=60;
 
 

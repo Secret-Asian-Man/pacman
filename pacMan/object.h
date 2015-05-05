@@ -6,7 +6,7 @@ class object
 {
 public:
     //constructors
-    object(coords position, char objectType, int age=0, bool hasMoved=false, int speed=1);
+    object(coords position, char objectType, int age=1, bool hasMoved=false, int speed=1);
 
     //destructor
     ~object();
@@ -39,6 +39,9 @@ public:
     void reset_age();
     void virtual increment_age();
     void decrement_age();
+    coords previous_position(directions currentDirection);
+    coords next_position(directions currentDirection);
+    directions opposite_direction(directions currentDirection);
 
     //public variables
     sf::Texture _texture;

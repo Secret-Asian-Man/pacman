@@ -3,12 +3,13 @@
 #include "object.h"
 #include "pacman.h"
 #include <vector>
+#include <deque>
 using namespace std;
 
 class ghost: public object
 {
 public:
-    ghost(coords position, char ghostType);
+    ghost(coords position, char ghostType/*, pacman* pacptr*/);
     ~ghost();
 
     //accessors
@@ -21,12 +22,11 @@ public:
     //main functions
     void move(object *board[][X_DIMENSION],object *pellets[][X_DIMENSION], directions direction);
     coords Intersection(object* board[][X_DIMENSION], directions ghostDirection);
-    coords choseDirection(vector<coords> exits, int vectorSize);
-    double findDistance(coords positions);
-    void checkPacMan(object* board[][X_DIMENSION], coords newDirect);
+    coords choseDirection(deque<coords> exits, int vectorSize);
+    double findDistance(coords fromHere, coords toHere);
     void checkPacMan(object* board[][X_DIMENSION], directions direction);
     bool atIntersection(object* board[][X_DIMENSION]);
-
+    void scatter(object* board[][X_DIMENSION], coords scatterPoint);
 private:
     char _ghostType;
     ghostState _ghostState;

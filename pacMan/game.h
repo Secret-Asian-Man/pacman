@@ -2,6 +2,7 @@
 #define GAME_H
 #include "grid.h"
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "constants.h"
 #include <vector>
 
@@ -24,6 +25,7 @@ public:
 private:
     //private variables
     RenderWindow _window;
+    Music _music;
     Event _event;
     Clock _clock;
     Time _time;
